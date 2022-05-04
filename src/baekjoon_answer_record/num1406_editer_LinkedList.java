@@ -1,30 +1,33 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record;
 
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class practice_space_2 {
-    public static void main(String[] args) throws IOException  {
+
+
+public class num1406_editer_LinkedList {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        Stack<Character> in_cursor = new Stack<>();
-        Stack<Character> out_cursor = new Stack<>();
+        LinkedList<Character> List1 = new LinkedList<>();
 
-        // stack input
+        // list input
         String str = br.readLine();
 
         for (int i = 0; i < str.length(); i++){
-            in_cursor.push(str.charAt(i));
+            List1.addLast(str.charAt(i));
         }
 
         // start
-        int n = Integer.parseInt(br.readLine());
+        ListIterator<Character> it = List1.listIterator(List1.size());
 
+        int n = Integer.parseInt(br.readLine());
 
         StringTokenizer st = new StringTokenizer(br.readLine() , " ");
         for (int i = 0; i < n; i++){
@@ -33,32 +36,28 @@ public class practice_space_2 {
             }
             switch (st.nextToken().charAt(0)){
                 case 'P':
-                    in_cursor.push(st.nextToken().charAt(0));
+                    it.add(st.nextToken().charAt(0));
                     break;
                 case 'B':
-                    if (!in_cursor.isEmpty()){
-                        in_cursor.pop();
+                    if(it.hasPrevious()){
+                        it.previous();
+                        it.remove();
                     }
                     break;
                 case 'L':
-                    if(!in_cursor.isEmpty()){
-                        out_cursor.push(in_cursor.pop());
+                    if(it.hasPrevious()){
+                        it.previous();
                     }
                     break;
                 case 'D':
-                    if(!out_cursor.isEmpty()){
-                        in_cursor.push(out_cursor.pop());
+                    if(it.hasNext()){
+                        it.next();
                     }
                     break;
             }
         }
-
-        // answer output
-        while (!out_cursor.isEmpty()){
-            in_cursor.push(out_cursor.pop());
-        }
-        for (char answer : in_cursor){
-            bw.write(answer);
+        for (char c : List1){
+            bw.write(c);
         }
         bw.flush();
         bw.close();

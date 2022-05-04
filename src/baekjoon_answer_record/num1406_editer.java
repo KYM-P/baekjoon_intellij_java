@@ -1,4 +1,4 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record;
 
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class practice_space_2 {
+public class num1406_editer {
     public static void main(String[] args) throws IOException  {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
