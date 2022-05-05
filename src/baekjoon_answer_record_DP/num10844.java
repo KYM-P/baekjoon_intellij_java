@@ -1,8 +1,8 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class    Main {
+public class num10844 {
     public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
 
