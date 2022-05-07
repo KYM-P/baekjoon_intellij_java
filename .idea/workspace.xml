@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/algorithm_record/BFS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algorithm_record/DFS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algorithm_record/GCD_Euckidean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2133.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/baekjoon_answer_record/icecream.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm_record/LIS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_record/LIS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2579.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2579.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +42,7 @@
     "settings.editor.selected.configurable": "Errors"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.BFS">
+  <component name="RunManager" selected="Application.icecream">
     <configuration name="BFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm_record.BFS" />
       <module name="baekjoon" />
@@ -101,8 +95,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="num1406_editer_LinkedList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="baekjoon_answer_record.num1406_editer_LinkedList" />
+    <configuration name="icecream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="baekjoon_answer_record.icecream" />
       <module name="baekjoon" />
       <extension name="coverage">
         <pattern>
@@ -116,11 +110,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.icecream" />
         <item itemvalue="Application.BFS" />
         <item itemvalue="Application.DFS" />
         <item itemvalue="Application.GCD_Euckidean" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.num1406_editer_LinkedList" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +133,7 @@
       <workItem from="1651751553578" duration="4216000" />
       <workItem from="1651837596258" duration="29000" />
       <workItem from="1651912318572" duration="2420000" />
-      <workItem from="1651923639085" duration="3186000" />
+      <workItem from="1651923639085" duration="6886000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -176,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651736499777</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit">
+      <created>1651930081130</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651930081130</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
