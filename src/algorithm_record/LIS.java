@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class LIS { // LIS
+public class LIS { // LIS (최대 증가 부분 수열)
     public static void main(String[] args) {
 
         int n = 0;
