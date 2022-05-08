@@ -4,59 +4,59 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class icecream {
+public class icecream { // BFS
+
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
-        /*
+
         int N = sc.nextInt();
         int M = sc.nextInt();
 
-        int[][] table = new int[M][N];
-        boolean[][] visited = new boolean[M][N];
+        int[][] table = new int[N][M];
+        boolean[][] visited = new boolean[N][M];
+        String str = sc.nextLine();
+        int size = 0;
 
-         */
-        int a = sc.nextInt(1);
-        int b = sc.nextInt(1);
-        System.out.println(a + " " + b);
-        /*
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                table[i][j] = sc.nextInt(1);
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (str.length() <= size){
+                    str += sc.nextLine();
+                }
+                table[i][j] = str.charAt(size) - 48;
+                size++;
             }
         }
-
 
         Queue<int[]> q = new LinkedList<>();
         int ice = 0;
 
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
                 if (table[i][j] == 0 && !visited[i][j]) {
                     q.offer(new int[]{i,j});
+                    ice++;
                 }
-                while (!q.isEmpty()) {
+                while (!q.isEmpty()) { // BFS
                     int x = q.peek()[0];
                     int y = q.poll()[1];
-                    visited[x][y] = true;
-                    if (x > 0 && table[x-1][y] != 1 && !visited[x-1][y]) { // left
+                    visited[y][x] = true;
+                    if (x > 0 && table[y][x-1] != 1 && !visited[y][x-1]) { // left
                         q.offer(new int[]{x-1,y});
                     }
-                    if (y > 0 && table[x][y-1] != 1 && !visited[x][y-1]) { // up
+                    if (y > 0 && table[y-1][x] != 1 && !visited[y-1][x]) { // up
                         q.offer(new int[]{x,y-1});
                     }
-                    if (x < M-1 && table[x+1][y] != 1 && !visited[x+1][y]) { // right
+                    if (x < M-1 && table[y][x+1] != 1 && !visited[y][x+1]) { // right
                         q.offer(new int[]{x+1,y});
                     }
-                    if (y < N-1 && table[x][y+1] != 1 && !visited[x][y-1]) { // down
+                    if (y < N-1 && table[y+1][x] != 1 && !visited[y+1][x]) { // down
                         q.offer(new int[]{x,y+1});
                     }
                 }
-                ice++;
             }
         }
-        System.out.println(ice);
+        System.out.println("ice: " + ice);
 
-         */
     }
 
 }

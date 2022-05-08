@@ -12,17 +12,13 @@ public class Main {
         int M = sc.nextInt(); // 세로
         int N = sc.nextInt(); // 가로
 
-        int[][][] table = new int[N+1][M+1][1];
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= M; j++) {
-                table[i][j][1] = sc.nextInt();
+        int[][] table = new int[N][M];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                table[i][j] = sc.nextInt();
             }
         }
 
-        int h = 1;
-        int w = 1;
-        table[w][h][1] = 1;
-        Queue<Integer[]> queue = new LinkedList<>();
         // start
     }
 }
