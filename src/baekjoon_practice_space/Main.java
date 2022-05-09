@@ -37,14 +37,15 @@ public class Main {
     public static void dfs (int x, int y, Stack<int[]> s) {
         int height = table[y][x];
         if (x == M-1 && y == N-1) {
-            st_to_DP(s);
+            st_to_DP(1,s);
             result++;
             s.pop();
             return;
         }
         if (x > 0 && table[y][x - 1] < height) { // left
             if (DP[y][x-1] > 0) {
-
+                st_to_DP(DP[y][x-1],s);
+                result += DP[y][x-1];
             }
             else {
                 s.push(new int[]{x-1,y});
@@ -53,7 +54,7 @@ public class Main {
         }
         if (y > 0 && table[y - 1][x] < height) { // up
             if (DP[y - 1][x] > 0) {
-                st_to_DP(s);
+                st_to_DP(DP[y - 1][x],s);
                 result += DP[y - 1][x];
             }
             else {
@@ -63,7 +64,7 @@ public class Main {
         }
         if (x < M - 1 && table[y][x + 1] < height) { // right
             if (DP[y][x+1] > 0) {
-                st_to_DP(s);
+                st_to_DP(DP[y][x+1],s);
                 result += DP[y][x+1];
             }
             else {
@@ -73,7 +74,7 @@ public class Main {
         }
         if (y < N - 1 && table[y + 1][x] < height) { // down
             if (DP[y+1][x] > 0) {
-                st_to_DP(s);
+                st_to_DP(DP[y+1][x],s);
                 result += DP[y+1][x];
             }
             else {
@@ -87,11 +88,11 @@ public class Main {
         return;
     }
 
-    public static void st_to_DP (Stack<int[]> s) {
+    public static void st_to_DP (int input, Stack<int[]> s) {
         for (int i = 0; i < s.size(); i++) {
             int x = s.get(i)[0];
             int y = s.get(i)[1];
-            DP[y][x] += 1;
+            DP[y][x] += input;
         }
     }
 }
