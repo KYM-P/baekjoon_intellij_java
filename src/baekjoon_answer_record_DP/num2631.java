@@ -1,8 +1,8 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class Main {
+public class num2631 {
     public static void main(String[] args) { // dp + LIS
         Scanner sc = new Scanner(System.in);
 

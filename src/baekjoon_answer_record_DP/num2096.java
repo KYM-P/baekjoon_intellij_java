@@ -3,7 +3,7 @@ package baekjoon_answer_record_DP;
 import java.util.Scanner;
 
 public class num2096 {
-    public static void main(String[] args) { // dp
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         // list input
