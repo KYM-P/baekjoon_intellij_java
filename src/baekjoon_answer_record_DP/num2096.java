@@ -1,9 +1,9 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class num2096 {
+    public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
         // list input
