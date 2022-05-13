@@ -31,7 +31,7 @@ public class practice_space_1  {
     public static long root (int x) {
         if (length != N-1){
             for (int i = 1; i < N; i++) {
-                System.out.println("x: "+x+" i:" + i +" length: "+length);
+                //System.out.println("x: "+x+" i:" + i +" length: "+length);
                 if (!visited[i] && map[x][i] != 0) {
                     visited[i] = true;
                     sum += map[x][i];
