@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/algorithm_record/Dijkstra.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm_record/Dijkstra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_record/Dijkstra.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,23 +32,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/민이/intellij_workspace/practice_java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/민이/intellij_workspace/baekjoon",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
-  <component name="RunManager" selected="Application.practice_space_1">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.Main" />
+}]]></component>
+  <component name="RunManager" selected="Application.Dijkstra">
+    <configuration name="Dijkstra" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="algorithm_record.Dijkstra" />
       <module name="baekjoon" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="baekjoon_practice_space.*" />
+          <option name="PATTERN" value="algorithm_record.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -57,12 +56,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="maze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="baekjoon_answer_record.maze" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.Main" />
       <module name="baekjoon" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="baekjoon_answer_record.*" />
+          <option name="PATTERN" value="baekjoon_practice_space.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,11 +110,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Dijkstra" />
         <item itemvalue="Application.practice_space_1" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.num2096" />
         <item itemvalue="Application.practice_space_3" />
-        <item itemvalue="Application.maze" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +140,9 @@
       <workItem from="1652237417233" duration="1248000" />
       <workItem from="1652257279083" duration="22847000" />
       <workItem from="1652317562633" duration="24014000" />
-      <workItem from="1652411089897" duration="4611000" />
+      <workItem from="1652411089897" duration="5249000" />
+      <workItem from="1652503706917" duration="22000" />
+      <workItem from="1652526026007" duration="2333000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -276,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652367212192</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="commit">
+      <created>1652428886023</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1652428886023</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

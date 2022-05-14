@@ -24,7 +24,7 @@ public class Dijkstra { // 다익스트라 알고리즘
         table[1][0] = 2;
         table[1][1] = 0;
         table[1][2] = 3;
-        table[1][3] = 2;
+        table[1][3] = 4;
 
         table[2][0] = 0;
         table[2][1] = 2;
@@ -35,6 +35,8 @@ public class Dijkstra { // 다익스트라 알고리즘
         table[3][1] = 2;
         table[3][2] = 3;
         table[3][3] = 0;
+        diik(0);
+        System.out.println(minimum[3]); // index 3 까지의 최단 거리
     }
 
     public static int getSmallIndex() {
@@ -49,7 +51,7 @@ public class Dijkstra { // 다익스트라 알고리즘
         return index;
     }
 
-    public static int diik(int start) {
+    public static void diik(int start) {
         for (int i = 0; i < N; i++) {
             minimum[i] = table[start][i];
         }
@@ -65,6 +67,5 @@ public class Dijkstra { // 다익스트라 알고리즘
                 }
             }
         }
-        return 0;
     }
 }
