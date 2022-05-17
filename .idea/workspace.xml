@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/src/algorithm_record/BitMask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm_record/FloydWarshall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_record/FloydWarshall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +43,20 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.FloydWarshall">
+  <component name="RunManager" selected="Application.BitMask">
+    <configuration name="BitMask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="algorithm_record.BitMask" />
+      <module name="baekjoon" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="algorithm_record.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Dijkstra" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm_record.Dijkstra" />
       <module name="baekjoon" />
@@ -82,19 +96,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="num2096" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="baekjoon_answer_record_DP.num2096" />
-      <module name="baekjoon" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="baekjoon_answer_record_DP.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="practice_space_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.practice_space_1" />
       <module name="baekjoon" />
@@ -110,11 +111,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BitMask" />
         <item itemvalue="Application.FloydWarshall" />
         <item itemvalue="Application.Dijkstra" />
         <item itemvalue="Application.practice_space_1" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.num2096" />
       </list>
     </recent_temporary>
   </component>
@@ -145,7 +146,7 @@
       <workItem from="1652526026007" duration="2946000" />
       <workItem from="1652595799283" duration="617000" />
       <workItem from="1652694785434" duration="767000" />
-      <workItem from="1652759627914" duration="4679000" />
+      <workItem from="1652759627914" duration="16685000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -301,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652694946818</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="commit">
+      <created>1652765814201</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1652765814201</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
