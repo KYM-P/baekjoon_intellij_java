@@ -1,12 +1,11 @@
 package baekjoon_practice_space;
 
+import java.awt.event.MouseAdapter;
 import java.util.Scanner;
 
 public class Main {
     static int N;
     static int[][] map;
-    static int bitm = 0;
-    static int mini = 0;
     static Integer[][] DP;
     public static void main(String[] args) { // TSP(TSProblem) dp + BitMask
         Scanner sc = new Scanner(System.in);
@@ -24,16 +23,21 @@ public class Main {
         // start
 
         DP = new Integer[(1<<N)-1][N]; // DP[bitmask][N]
-        bitm = 1;
+        // DP[bm][i] = 현재 있는 도시 i, 방문한 기록 bm 일때,
+        root(0,1);
     }
-    public static void root(int start, int bm) {
+    public static int root(int start, int bm) {
+        if (bm == (1<<N)-1) {
+            return map[start][0];
+        }
+        if (DP[bm][start] != null) {
+            return DP[bm][start];
+        }
         for (int i = 1; i < N; i++) {
             if ((bm & (1 << i)) == 0 && map[start][i] != 0) { // i 번째 Node 통과 여부
-                bitm = (bitm | (1 << i));
-                mini += map[start][i];
-                root(i,bitm);
-
+                DP[bm][start] = Math.min(DP[bm][start], root(i,(bm | (1 << i)) + map[start][i]);
             }
         }
+        return DP[bm][start];
     }
 }
