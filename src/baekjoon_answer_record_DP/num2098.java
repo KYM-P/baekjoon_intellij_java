@@ -1,13 +1,13 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class Main {
+public class num2098 {
     static int N;
     static int[][] map;
     static Integer[][] DP;
     static int inf = 1000000000;
-    public static void main(String[] args) { // TSP(TSProblem) dp + BitMask + dfs
+    public static void main(String[] args) { // TSP(TSProblem) / dp + BitMask + dfs
         Scanner sc = new Scanner(System.in);
 
         // list input

@@ -42,7 +42,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.BitMask">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="BitMask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm_record.BitMask" />
       <module name="baekjoon" />
@@ -110,11 +110,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.BitMask" />
         <item itemvalue="Application.FloydWarshall" />
         <item itemvalue="Application.Dijkstra" />
         <item itemvalue="Application.practice_space_1" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -146,7 +146,8 @@
       <workItem from="1652595799283" duration="617000" />
       <workItem from="1652694785434" duration="767000" />
       <workItem from="1652759627914" duration="21525000" />
-      <workItem from="1652855834787" duration="4166000" />
+      <workItem from="1652855834787" duration="7281000" />
+      <workItem from="1652934838633" duration="2361000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -323,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652803098174</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="commit">
+      <created>1652883400717</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1652883400717</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
