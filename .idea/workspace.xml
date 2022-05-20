@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2302.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
     </list>
@@ -148,7 +147,8 @@
       <workItem from="1652694785434" duration="767000" />
       <workItem from="1652759627914" duration="21525000" />
       <workItem from="1652855834787" duration="7281000" />
-      <workItem from="1652934838633" duration="6387000" />
+      <workItem from="1652934838633" duration="7177000" />
+      <workItem from="1653030172051" duration="4363000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -339,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652938216194</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="commit">
+      <created>1652947586450</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1652947586450</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
