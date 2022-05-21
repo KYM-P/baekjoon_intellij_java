@@ -1,8 +1,8 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class Main {
+public class num1328 {
     static int N;
     static int L;
     static int R;
