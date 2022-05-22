@@ -20,7 +20,7 @@ public class Main {
             if (DP[(int)str1.charAt(i) - 65][0] != null) {
                 int j = 0;
                 while (DP[(int)str1.charAt(i) - 65][j] != null) {
-                    chase(i,j,1);
+                    chase(i,DP[(int)str1.charAt(i) - 65][j],1);
                     j++;
                 }
             }
@@ -29,6 +29,7 @@ public class Main {
                 for (int j = 0; j < str2.length(); j++) {
                     if (str1.charAt(i) == str2.charAt(j)) {
                         DP[(int)str1.charAt(i) - 65][size] = j;
+                        size++;
                         chase(i,j,1);
                     }
                 }
@@ -40,12 +41,13 @@ public class Main {
         x1 += 1;
         x2 += 1;
         if (x1 >= str1.length() || x2 >= str2.length()) {
+            result = Math.max(result,len);
             return;
         }
         if (str1.charAt(x1) == str2.charAt(x2)){
-            System.out.print(str1.charAt(x1));
             len += 1;
             chase(x1, x2, len);
+            return;
         }
         result = Math.max(result,len);
         return;

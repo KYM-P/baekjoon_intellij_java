@@ -1,59 +1,64 @@
 package baekjoon_practice_space;
 
 import java.util.Scanner;
-import java.util.Stack;
 
 public class practice_space_1  {
-    static int N;
-    static int[][] map;
-    static long sum = 0;
-    static boolean[] visited;
-    static long min = -1;
-
-    static int length = 0;
-    public static void main(String[] args) { // dp   TSP(TSProblem)
+    static String str1;
+    static String str2;
+    static Integer[][] DP;
+    static int[][] skip;
+    static int result = 0;
+    static int count = 0;
+    public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
         // list input
-        N = sc.nextInt();
-        map = new int[N][N];
-        visited = new boolean[N];
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                map[i][j] = sc.nextInt();
-            }
-        }
+        str1 = sc.nextLine();
+        str2 = sc.nextLine();
 
         // start
-        System.out.println(root(0));
-    }
-    public static long root (int x) {
-        if (length != N-1){
-            for (int i = 1; i < N; i++) {
-                //System.out.println("x: "+x+" i:" + i +" length: "+length);
-                if (!visited[i] && map[x][i] != 0) {
-                    visited[i] = true;
-                    sum += map[x][i];
-                    length += 1;
-                    root(i);
-                    visited[i] = false;
-                    sum -= map[x][i];
-                    length -= 1;
+        DP = new Integer[26][4000];
+        skip = new int[4000][2]; // [i][0] == °Ç³Ê¶Û ±æÀÌ , [i][1] == °Ç³Ê¶Ù´Â È½¼ö
+        for (int i = 0; i < str1.length(); i++) {
+            if (DP[(int)str1.charAt(i) - 65][0] != null) {
+                int j = 0;
+                while (DP[(int)str1.charAt(i) - 65][j] != null) {
+                    chase(i,DP[(int)str1.charAt(i) - 65][j],1);
+                    j++;
+                }
+            }
+            else {
+                int size = 0;
+                for (int j = 0; j < str2.length(); j++) {
+                    if (skip[j][1] != 0) {
+                        skip[j][1] -= count;
+                        j += skip[j][0];
+                    }
+                    if (str1.charAt(i) == str2.charAt(j)) {
+                        DP[(int)str1.charAt(i) - 65][size] = j;
+                        size++;
+                        chase(i,j,1);
+                    }
                 }
             }
         }
-        if (length != N-1 || map[x][0] == 0) {
-            return min;
+        System.out.println(result);
+    }
+    public static void chase(int x1, int x2 ,int len) {
+        x1 += 1;
+        x2 += 1;
+        if (x1 >= str1.length() || x2 >= str2.length()) {
+            result = Math.max(result,len);
+            count = len;
+            return;
         }
-        sum += map[x][0];
-        if (min == -1) {
-            min = sum;
+        if (str1.charAt(x1) == str2.charAt(x2)){
+            len += 1;
+            chase(x1, x2, len);
+            return;
         }
-        else {
-            min = Math.min(sum, min);
-        }
-        sum -= map[x][0];
-        return min;
+        result = Math.max(result,len);
+        count = len;
+        return;
     }
 }

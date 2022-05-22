@@ -7,6 +7,7 @@
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +150,8 @@
       <workItem from="1652855834787" duration="7281000" />
       <workItem from="1652934838633" duration="7177000" />
       <workItem from="1653030172051" duration="7063000" />
-      <workItem from="1653119734650" duration="11102000" />
+      <workItem from="1653119734650" duration="14792000" />
+      <workItem from="1653187788306" duration="4993000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -368,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653138121659</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="commit">
+      <created>1653143717468</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1653143717468</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
