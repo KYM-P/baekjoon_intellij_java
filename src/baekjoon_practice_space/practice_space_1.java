@@ -32,15 +32,20 @@ public class practice_space_1  {
                 for (int j = 0; j < str2.length(); j++) {
                     if (skip[j][1] != 0) {
                         skip[j][1] -= count;
-                        j += skip[j][0];
+                        j += skip[j][0] - 1;
+                        count = 1;
                     }
                     if (str1.charAt(i) == str2.charAt(j)) {
                         DP[(int)str1.charAt(i) - 65][size] = j;
                         size++;
                         chase(i,j,1);
+                        skip[j][0] = count;
+                        skip[j][1] = count;
+                        count = 1;
                     }
                 }
             }
+            count++;
         }
         System.out.println(result);
     }

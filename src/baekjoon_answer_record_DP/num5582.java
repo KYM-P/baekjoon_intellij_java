@@ -1,8 +1,8 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class Main {
+public class num5582 {
     static String str1;
     static String str2;
     static int[][] DP;

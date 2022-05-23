@@ -1,58 +1,57 @@
 package baekjoon_practice_space;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class practice_space_2 {
-    public static void main(String[] args) {
+    static String str1;
+    static String str2;
+    static int[][] skip;
+    static int result = 0;
+    static int count = 0;
+    public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
         // list input
-        int N = sc.nextInt(); // ¼¼·Î
-        int M = sc.nextInt(); // °¡·Î
-
-        int[][] table = new int[N][M];
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                table[i][j] = sc.nextInt();
-            }
-        }
+        str1 = sc.nextLine();
+        str2 = sc.nextLine();
 
         // start
-        Queue<int[]> q = new LinkedList<>();
-        int result = 0;
-
-        q.offer(new int[]{0,0});
-
-        while (!q.isEmpty()){
-            int x = q.peek()[0];
-            int y = q.poll()[1];
-            int height = table[y][x];
-            System.out.print(height);
-            if (x == M-1 && y == N-1) {
-                System.out.print(" end\n");
-                result++;
-                continue;
+        skip = new int[4000][2]; // [i][0] == °Ç³Ê¶Û ±æÀÌ , [i][1] == °Ç³Ê¶Ù´Â È½¼ö
+        for (int i = 0; i < str1.length(); i++) {
+            for (int j = 0; j < str2.length(); j++) {
+                System.out.print(str1.charAt(i) + " to " + str2.charAt(j) + " " + j + ", ");
+                if (skip[j][1] != 0) {
+                    skip[j][1] -= 1;
+                    j += skip[j][0];
+                    System.out.print("skip to " + (j+1) + " ");
+                }
+                else if (str1.charAt(i) == str2.charAt(j)) {
+                    chase(i,j,1);
+                    //System.out.println(count);
+                    skip[j][0] = count;
+                    skip[j][1] = count;
+                    j += skip[j][0];
+                }
             }
-            if (x > 0 && table[y][x - 1] < height) { // left
-                System.out.print(" left");
-                q.offer(new int[]{x - 1,y});
-            }
-            if (y > 0 && table[y - 1][x] < height) { // up
-                System.out.print(" up");
-                q.offer(new int[]{x,y - 1});
-            }
-            if (x < M - 1 && table[y][x + 1] < height) { // right
-                System.out.print(" right");
-                q.offer(new int[]{x + 1,y});
-            }
-            if (y < N - 1 && table[y + 1][x] < height) { // down
-                System.out.print(" down");
-                q.offer(new int[]{x,y + 1});
-            }
-            System.out.print("\n");
+            System.out.println("");
         }
         System.out.println(result);
+    }
+    public static void chase(int x1, int x2 ,int len) {
+        x1 += 1;
+        x2 += 1;
+        if (x1 >= str1.length() || x2 >= str2.length()) {
+            result = Math.max(result,len);
+            count = len - 1;
+            return;
+        }
+        if (str1.charAt(x1) == str2.charAt(x2)){
+            len += 1;
+            chase(x1, x2, len);
+            return;
+        }
+        result = Math.max(result,len);
+        count = len - 1;
+        return;
     }
 }
