@@ -16,9 +16,11 @@ public class practice_space_1  {
         DP = new long[N+1][10][10]; // [길이][시작값][끝값]
         DP[10][9][0] = 1;
         DP[10][0][9] = 1;
-        for (int i = 11; i <= N; i++) {
+        for (int i = 10; i <= N-1; i++) {
             for (int j = 0; j < 10; j++) { // 시작값
+                for (int k = 0; k < 10; k++) { // 끝값
 
+                }
             }
         }
 

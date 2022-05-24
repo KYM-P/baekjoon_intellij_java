@@ -33,18 +33,18 @@ public class Main {
                 //System.out.println(i+ " " +j +" "+ 0 + " " +DP[i][j][0]);
                 for (int k = 1; k < 9; k++) { // 끝값
                     if (j == 0) {
-                        DP[i][j][k] = DP[i-1][j+1][k]%div; // 앞에 추가
-                        DP[i][j][k] = (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
+                        DP[i][j][k] += DP[i-1][j+1][k]%div; // 앞에 추가
+                        DP[i][j][k] += (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
                     }
                     else if (j == 9){
-                        DP[i][j][k] = DP[i-1][j-1][k]%div; // 앞에 추가
-                        DP[i][j][k] = (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
+                        DP[i][j][k] += DP[i-1][j-1][k]%div; // 앞에 추가
+                        DP[i][j][k] += (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
                     }
                     else {
-                        DP[i][j][k] = (DP[i-1][j-1][k] + DP[i-1][j+1][k])%div; // 앞에 추가
-                        DP[i][j][k] = (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
+                        DP[i][j][k] += (DP[i-1][j-1][k] + DP[i-1][j+1][k])%div; // 앞에 추가
+                        DP[i][j][k] += (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
                     }
-                    DP[i][j][k] += (DP[i-2][j][k] * (i-3))%div;
+                    DP[i][j][k] += (DP[i-2][j][k] * (i-3) * 2)%div;
                     //System.out.println(i+ " " +j +" "+ k + " " +DP[i][j][k]);
                 }
                 // k == 9

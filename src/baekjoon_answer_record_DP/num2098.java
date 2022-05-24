@@ -27,8 +27,8 @@ public class num2098 {
         System.out.println(root(0,1));
     }
     public static int root(int start, int bm) {
-        if (bm == (1<<N)-1) {
-            if (map[start][0] == 0) {
+        if (bm == (1<<N)-1) { // 모든 도시 방문
+            if (map[start][0] == 0) { // 마지막 돌아오는 길이 없을 경우
                 return inf;
             }
             return map[start][0];
