@@ -3,67 +3,32 @@ package baekjoon_practice_space;
 import java.util.Scanner;
 
 public class practice_space_1  {
-    static String str1;
-    static String str2;
-    static Integer[][] DP;
-    static int[][] skip;
-    static int result = 0;
-    static int count = 0;
+    static int N;
+    static long[][][] DP;
+    static int div = 1000000000;
     public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
         // list input
-        str1 = sc.nextLine();
-        str2 = sc.nextLine();
+        N = sc.nextInt();
 
         // start
-        DP = new Integer[26][4000];
-        skip = new int[4000][2]; // [i][0] == 건너뛸 길이 , [i][1] == 건너뛰는 횟수
-        for (int i = 0; i < str1.length(); i++) {
-            if (DP[(int)str1.charAt(i) - 65][0] != null) {
-                int j = 0;
-                while (DP[(int)str1.charAt(i) - 65][j] != null) {
-                    chase(i,DP[(int)str1.charAt(i) - 65][j],1);
-                    j++;
-                }
+        DP = new long[N+1][10][10]; // [길이][시작값][끝값]
+        DP[10][9][0] = 1;
+        DP[10][0][9] = 1;
+        for (int i = 11; i <= N; i++) {
+            for (int j = 0; j < 10; j++) { // 시작값
+
             }
-            else {
-                int size = 0;
-                for (int j = 0; j < str2.length(); j++) {
-                    if (skip[j][1] != 0) {
-                        skip[j][1] -= count;
-                        j += skip[j][0] - 1;
-                        count = 1;
-                    }
-                    if (str1.charAt(i) == str2.charAt(j)) {
-                        DP[(int)str1.charAt(i) - 65][size] = j;
-                        size++;
-                        chase(i,j,1);
-                        skip[j][0] = count;
-                        skip[j][1] = count;
-                        count = 1;
-                    }
-                }
+        }
+
+        int result = 0;
+        for (int i = 1; i < 10; i++) { // 시작값
+            for (int j = 0; j < 10; j++) { // 끝값
+                result += DP[N][i][j]%div;
+                result %= div;
             }
-            count++;
         }
-        System.out.println(result);
-    }
-    public static void chase(int x1, int x2 ,int len) {
-        x1 += 1;
-        x2 += 1;
-        if (x1 >= str1.length() || x2 >= str2.length()) {
-            result = Math.max(result,len);
-            count = len;
-            return;
-        }
-        if (str1.charAt(x1) == str2.charAt(x2)){
-            len += 1;
-            chase(x1, x2, len);
-            return;
-        }
-        result = Math.max(result,len);
-        count = len;
-        return;
+        System.out.println(result%div);
     }
 }
