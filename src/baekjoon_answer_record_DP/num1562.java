@@ -1,8 +1,8 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class practice_space_2 { // dp + Bitmask
+public class num1562 {
     static int div = 1000000000;
     static long[][][] DP;
     static int Bm = (1<<10) - 1;
