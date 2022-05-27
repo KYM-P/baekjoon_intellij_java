@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +43,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.practice_space_2">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="BitMask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm_record.BitMask" />
       <module name="baekjoon" />
@@ -110,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.practice_space_2" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.practice_space_2" />
         <item itemvalue="Application.practice_space_1" />
         <item itemvalue="Application.BitMask" />
         <item itemvalue="Application.FloydWarshall" />
@@ -154,7 +155,9 @@
       <workItem from="1653232470011" duration="4279000" />
       <workItem from="1653295345108" duration="8813000" />
       <workItem from="1653365190767" duration="4817000" />
-      <workItem from="1653469246297" duration="3727000" />
+      <workItem from="1653469246297" duration="5276000" />
+      <workItem from="1653549312512" duration="4812000" />
+      <workItem from="1653625139129" duration="10153000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -401,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653403573385</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="commit">
+      <created>1653482137263</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1653482137264</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

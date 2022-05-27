@@ -4,72 +4,81 @@ import java.util.Scanner;
 
 public class Main {
     static int N;
-    static long[][][] DP;
-    static int div = 1000000000;
+    static int M;
+    static short[] K;
+    static Integer[][][] DP; // [길이][분할 수][Delta]
+
     public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
         // list input
         N = sc.nextInt();
+        M = sc.nextInt();
+
+        K = new short[N+1];
+        for (int i = 1; i <= N; i++) {
+            K[i] = sc.nextShort();
+        }
 
         // start
-        DP = new long[N+1][10][10]; // [길이][시작값][끝값]
-        DP[10][9][0] = 1;
-        DP[10][0][9] = 1;
-        for (int i = 11; i <= N; i++) {
-            for (int j = 0; j < 10; j++) { // 시작값
-                // k == 0
-                DP[i][j][0] = DP[i-1][j][1]%div; // 뒤에 추가
-                if (j == 0) {
-                    DP[i][j][0] +=  DP[i-1][j+1][0]%div;
+        DP = new Integer[N+1][M+1][2]; // [][][0] = 값, [][][] = Delta
+        DP[1][1][0] = (int)K[1];
+        for (int i = 2; i <= N; i++) {
+            for (int j = 1; j <= ((i/2)+(i%2)); j++) {
+                if (j > M) {
+                    break;
                 }
-                else if (j == 9){
-                    DP[i][j][0] +=  DP[i-1][j-1][0]%div;
-                }
-                else {
-                    DP[i][j][0] += (DP[i-1][j-1][0] + DP[i-1][j+1][0])%div;
-                }
-                DP[i][j][0] += (DP[i-2][j][0] * (i-3))%div;
-                //System.out.println(i+ " " +j +" "+ 0 + " " +DP[i][j][0]);
-                for (int k = 1; k < 9; k++) { // 끝값
-                    if (j == 0) {
-                        DP[i][j][k] += DP[i-1][j+1][k]%div; // 앞에 추가
-                        DP[i][j][k] += (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
-                    }
-                    else if (j == 9){
-                        DP[i][j][k] += DP[i-1][j-1][k]%div; // 앞에 추가
-                        DP[i][j][k] += (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
+                if (j == 1) {
+                    if (DP[i-1][1][1] == 0){
+                        DP[i][1][0] = Math.max(DP[i-1][1][0],Math.max(DP[i-1][1][0]+K[i],K[i]));
+                        if (K[i] != 0 && DP[i][1][0] == DP[i-1][1][0]) {
+                            DP[i][1][1] = 1;
+                        }
+                        else {
+                            DP[i][1][1] = 0;
+                        }
                     }
                     else {
-                        DP[i][j][k] += (DP[i-1][j-1][k] + DP[i-1][j+1][k])%div; // 앞에 추가
-                        DP[i][j][k] += (DP[i-1][j][k-1] + DP[i-1][j][k+1])%div; // 뒤에 추가
+                        int max = 0;
+                        int del = DP[i-1][1][1];
+                        for (int k = 0; k <= del; k++) {
+                            max += K[i-k];
+                            if (max >= DP[i-1][1][0]) {
+                                DP[i][1][0] = max;
+                                DP[i][1][1] = 0;
+                            }
+                        }
+                        if (DP[i-1][1][0] + max >= DP[i-1][1][0] && DP[i-1][1][0] + max >= DP[i][1][0]) {
+                            DP[i][1][0] = DP[i-1][1][0] + max;
+                            DP[i][1][1] = 0;
+                        }
+                        if (DP[i][1][1] == null) {
+                            DP[i][1][1] = DP[i-1][1][1] + 1;
+                            DP[i][1][0] = DP[i-1][1][0];
+                        }
                     }
-                    DP[i][j][k] += (DP[i-2][j][k] * (i-3) * 2)%div;
-                    //System.out.println(i+ " " +j +" "+ k + " " +DP[i][j][k]);
                 }
-                // k == 9
-                DP[i][j][9] = DP[i-1][j][8]%div; // 뒤에 추가
-                if (j == 0) {
-                    DP[i][j][9] +=  DP[i-1][j+1][9]%div;
-                }
-                else if (j == 9){
-                    DP[i][j][9] +=  DP[i-1][j-1][9]%div;
-                }
-                else {
-                    DP[i][j][9] += (DP[i-1][j-1][9] + DP[i-1][j+1][9])%div;
-                }
-                DP[i][j][9] += (DP[i-2][j][9] * (i-3))%div;
-                //System.out.println(i+ " " +j +" "+ 9 + " " +DP[i][j][9]);
-            }
-        }
+                else { // j > 1
+                    if (DP[i-1][j][0] == null) {
+                        DP[i][j][0] = DP[i-2][j-1][0] + K[i];
+                        DP[i][j][1] = 0;
+                    }
+                    else {
+                        DP[i][j][0] = Math.max(DP[i-2][j-1][0] + K[i],Math.max(DP[i-1][i]))
 
-        int result = 0;
-        for (int i = 1; i < 10; i++) { // 시작값
-            for (int j = 0; j < 10; j++) { // 끝값
-                result += DP[N][i][j]%div;
-                result %= div;
+                        if (DP[i-1][j][0] > DP[i-2][j-1][0] + K[i]) {
+                            DP[i][j][0] = DP[i-1][j][0];
+                            DP[i][j][1] = DP[i-1][j][1] + 1;
+                        }
+                        else {
+                            DP[i][j][0] = DP[i-2][j-1][0] + K[i];
+                            DP[i][j][1] = 0;
+                        }
+                    }
+                }
+                //System.out.println(i + " " + DP[i][1][0]);
             }
         }
-        System.out.println(result%div);
+        System.out.println(DP[N][M][0]);
     }
 }

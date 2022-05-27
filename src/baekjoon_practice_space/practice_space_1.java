@@ -4,33 +4,30 @@ import java.util.Scanner;
 
 public class practice_space_1  {
     static int N;
-    static long[][][] DP;
-    static int div = 1000000000;
+    static int M;
+    static short[] K;
+    static int[][] DP;
     public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
         // list input
         N = sc.nextInt();
+        M = sc.nextInt();
+
+        K = new short[N+1];
+        for (int i = 1; i <= N; i++) {
+            K[i] = sc.nextShort();
+        }
 
         // start
-        DP = new long[N+1][10][10]; // [길이][시작값][끝값]
-        DP[10][9][0] = 1;
-        DP[10][0][9] = 1;
-        for (int i = 10; i <= N-1; i++) {
-            for (int j = 0; j < 10; j++) { // 시작값
-                for (int k = 0; k < 10; k++) { // 끝값
-
+        DP = new int[N+1][M+1];
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= ((i/2)+(i%2)); j++) {
+                if (j > M) {
+                    break;
                 }
+                //DP[i][j] = Math.max(DP[i-1][j],)
             }
         }
-
-        int result = 0;
-        for (int i = 1; i < 10; i++) { // 시작값
-            for (int j = 0; j < 10; j++) { // 끝값
-                result += DP[N][i][j]%div;
-                result %= div;
-            }
-        }
-        System.out.println(result%div);
     }
 }
