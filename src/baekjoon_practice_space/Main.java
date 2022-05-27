@@ -23,39 +23,26 @@ public class Main {
         // start
         DP = new Integer[N+1][M+1][2]; // [][][0] = °ª, [][][] = Delta
         DP[1][1][0] = (int)K[1];
+        DP[1][1][1] = 0;
         for (int i = 2; i <= N; i++) {
             for (int j = 1; j <= ((i/2)+(i%2)); j++) {
                 if (j > M) {
                     break;
                 }
                 if (j == 1) {
-                    if (DP[i-1][1][1] == 0){
-                        DP[i][1][0] = Math.max(DP[i-1][1][0],Math.max(DP[i-1][1][0]+K[i],K[i]));
-                        if (K[i] != 0 && DP[i][1][0] == DP[i-1][1][0]) {
-                            DP[i][1][1] = 1;
-                        }
-                        else {
+                    DP[i][1][1] = DP[i-1][1][1] + 1;
+                    DP[i][1][0] = DP[i-1][1][0];
+                    int max = 0;
+                    for (int k = 0; k <= DP[i-1][1][1]; k++) {
+                        max += K[i-k];
+                        if (max >= DP[i][1][0]) {
+                            DP[i][1][0] = max;
                             DP[i][1][1] = 0;
                         }
                     }
-                    else {
-                        int max = 0;
-                        int del = DP[i-1][1][1];
-                        for (int k = 0; k <= del; k++) {
-                            max += K[i-k];
-                            if (max >= DP[i-1][1][0]) {
-                                DP[i][1][0] = max;
-                                DP[i][1][1] = 0;
-                            }
-                        }
-                        if (DP[i-1][1][0] + max >= DP[i-1][1][0] && DP[i-1][1][0] + max >= DP[i][1][0]) {
-                            DP[i][1][0] = DP[i-1][1][0] + max;
-                            DP[i][1][1] = 0;
-                        }
-                        if (DP[i][1][1] == null) {
-                            DP[i][1][1] = DP[i-1][1][1] + 1;
-                            DP[i][1][0] = DP[i-1][1][0];
-                        }
+                    if (DP[i-1][1][0] + max >= DP[i-1][1][0] && DP[i-1][1][0] + max >= DP[i][1][0]) {
+                        DP[i][1][0] = DP[i-1][1][0] + max;
+                        DP[i][1][1] = 0;
                     }
                 }
                 else { // j > 1
@@ -64,20 +51,24 @@ public class Main {
                         DP[i][j][1] = 0;
                     }
                     else {
-                        DP[i][j][0] = Math.max(DP[i-2][j-1][0] + K[i],Math.max(DP[i-1][i]))
-
-                        if (DP[i-1][j][0] > DP[i-2][j-1][0] + K[i]) {
-                            DP[i][j][0] = DP[i-1][j][0];
-                            DP[i][j][1] = DP[i-1][j][1] + 1;
+                        DP[i][j][1] = DP[i-1][j][1] + 1;
+                        DP[i][j][0] = DP[i-1][j][0];
+                        int max = 0;
+                        for (int k = 0; k <= DP[i-1][j][1]; k++) {
+                            max += K[i-k];
+                            if (DP[i-2-k][j-1][0] + max >= DP[i][j][0]) {
+                                DP[i][j][0] = DP[i-2-k][j-1][0] + max;
+                                DP[i][j][1] = 0;
+                            }
                         }
-                        else {
-                            DP[i][j][0] = DP[i-2][j-1][0] + K[i];
+                        if (DP[i-1][j][0] + max >= DP[i-1][j][0] && DP[i-1][j][0] + max >= DP[i][j][0]) {
+                            DP[i][j][0] = DP[i-1][j][0] + max;
                             DP[i][j][1] = 0;
                         }
                     }
                 }
-                //System.out.println(i + " " + DP[i][1][0]);
             }
+            //System.out.println(i + " " + DP[i][1][0]);
         }
         System.out.println(DP[N][M][0]);
     }

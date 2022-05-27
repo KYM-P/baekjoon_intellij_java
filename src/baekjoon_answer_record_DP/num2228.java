@@ -1,8 +1,8 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
 
-public class practice_space_2 { // dp + Bitmask
+public class num2228 {
     static int N;
     static int M;
     static short[] K;
@@ -35,7 +35,7 @@ public class practice_space_2 { // dp + Bitmask
                     int max = 0;
                     for (int k = 0; k <= DP[i-1][1][1]; k++) {
                         max += K[i-k];
-                        if (max >= DP[i-1][1][0]) {
+                        if (max >= DP[i][1][0]) {
                             DP[i][1][0] = max;
                             DP[i][1][1] = 0;
                         }
@@ -56,7 +56,7 @@ public class practice_space_2 { // dp + Bitmask
                         int max = 0;
                         for (int k = 0; k <= DP[i-1][j][1]; k++) {
                             max += K[i-k];
-                            if (DP[i-2-k][j-1][0] + max >= DP[i-1][j][0]) {
+                            if (DP[i-2-k][j-1][0] + max >= DP[i][j][0]) {
                                 DP[i][j][0] = DP[i-2-k][j-1][0] + max;
                                 DP[i][j][1] = 0;
                             }
@@ -67,8 +67,8 @@ public class practice_space_2 { // dp + Bitmask
                         }
                     }
                 }
-                //System.out.println(i + " " + DP[i][1][0]);
             }
+            //System.out.println(i + " " + DP[i][1][0]);
         }
         System.out.println(DP[N][M][0]);
     }
