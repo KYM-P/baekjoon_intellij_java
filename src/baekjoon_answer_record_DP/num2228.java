@@ -22,49 +22,34 @@ public class num2228 {
 
         // start
         DP = new Integer[N+1][M+1][2]; // [][][0] = °ª, [][][] = Delta
+        DP[0][0][0] = 0;
+        DP[1][0][0] = 0;
         DP[1][1][0] = (int)K[1];
         DP[1][1][1] = 0;
         for (int i = 2; i <= N; i++) {
+            DP[i][0][0] = 0;
             for (int j = 1; j <= ((i/2)+(i%2)); j++) {
                 if (j > M) {
                     break;
                 }
-                if (j == 1) {
-                    DP[i][1][1] = DP[i-1][1][1] + 1;
-                    DP[i][1][0] = DP[i-1][1][0];
-                    int max = 0;
-                    for (int k = 0; k <= DP[i-1][1][1]; k++) {
-                        max += K[i-k];
-                        if (max >= DP[i][1][0]) {
-                            DP[i][1][0] = max;
-                            DP[i][1][1] = 0;
-                        }
-                    }
-                    if (DP[i-1][1][0] + max >= DP[i-1][1][0] && DP[i-1][1][0] + max >= DP[i][1][0]) {
-                        DP[i][1][0] = DP[i-1][1][0] + max;
-                        DP[i][1][1] = 0;
-                    }
+                if (j > 1 && DP[i-1][j][0] == null) {
+                    DP[i][j][0] = DP[i-2][j-1][0] + K[i];
+                    DP[i][j][1] = 0;
                 }
-                else { // j > 1
-                    if (DP[i-1][j][0] == null) {
-                        DP[i][j][0] = DP[i-2][j-1][0] + K[i];
-                        DP[i][j][1] = 0;
-                    }
-                    else {
-                        DP[i][j][1] = DP[i-1][j][1] + 1;
-                        DP[i][j][0] = DP[i-1][j][0];
-                        int max = 0;
-                        for (int k = 0; k <= DP[i-1][j][1]; k++) {
-                            max += K[i-k];
-                            if (DP[i-2-k][j-1][0] + max >= DP[i][j][0]) {
-                                DP[i][j][0] = DP[i-2-k][j-1][0] + max;
-                                DP[i][j][1] = 0;
-                            }
-                        }
-                        if (DP[i-1][j][0] + max >= DP[i-1][j][0] && DP[i-1][j][0] + max >= DP[i][j][0]) {
-                            DP[i][j][0] = DP[i-1][j][0] + max;
+                else {
+                    DP[i][j][1] = DP[i-1][j][1] + 1;
+                    DP[i][j][0] = DP[i-1][j][0];
+                    int max = 0;
+                    for (int k = 0; k <= DP[i-1][j][1]; k++) {
+                        max += K[i-k];
+                        if (DP[i-2-k][j-1][0] + max >= DP[i][j][0]) {
+                            DP[i][j][0] = DP[i-2-k][j-1][0] + max;
                             DP[i][j][1] = 0;
                         }
+                    }
+                    if (DP[i-1][j][0] + max >= DP[i-1][j][0] && DP[i-1][j][0] + max >= DP[i][j][0]) {
+                        DP[i][j][0] = DP[i-1][j][0] + max;
+                        DP[i][j][1] = 0;
                     }
                 }
             }

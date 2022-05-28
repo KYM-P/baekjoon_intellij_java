@@ -3,88 +3,33 @@ package baekjoon_practice_space;
 import java.util.Scanner;
 
 public class practice_space_1  {
-    static int N;
-    static int M;
-    static short[] K;
-    static Integer[][][] DP; // [길이][분할 수][Delta]
+    static int[] b;
+    static int n, ans = Integer.MAX_VALUE;
 
-    public static void main(String[] args) { // dp
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // list input
-        N = sc.nextInt();
-        M = sc.nextInt();
+        int M = sc.nextInt();
 
-        K = new short[N+1];
-        for (int i = 1; i <= N; i++) {
-            K[i] = sc.nextShort();
-        }
+        int open1 = sc.nextInt();
+        int open2 = sc.nextInt();
 
-        // start
-        DP = new Integer[N+1][M+1][2]; // [][][0] = 값, [][][] = Delta
-        DP[1][1][0] = (int)K[1];
-        DP[1][1][1] = 0;
-        for (int i = 2; i <= N; i++) {
-            for (int j = 1; j <= ((i/2)+(i%2)); j++) {
-                if (j > M) {
-                    break;
-                }
-                if (j == 1) {
-                    if (DP[i-1][1][1] == 0){
-                        DP[i][1][0] = Math.max(DP[i-1][1][0],Math.max(DP[i-1][1][0]+K[i],K[i]));
-                        if (K[i] != 0 && DP[i][1][0] == DP[i-1][1][0]) {
-                            DP[i][1][1] = 1;
-                        }
-                        else {
-                            DP[i][1][1] = 0;
-                        }
-                    }
-                    else {
-                        int max = 0;
-                        for (int k = 0; k <= DP[i-1][1][1]; k++) {
-                            max += K[i-k];
-                            if (max >= DP[i-1][1][0]) {
-                                DP[i][1][0] = max;
-                                DP[i][1][1] = 0;
-                            }
-                        }
-                        if (DP[i-1][1][0] + max >= DP[i-1][1][0] && DP[i-1][1][0] + max >= DP[i][1][0]) {
-                            DP[i][1][0] = DP[i-1][1][0] + max;
-                            DP[i][1][1] = 0;
-                        }
-                        if (DP[i][1][1] == null) {
-                            DP[i][1][1] = DP[i-1][1][1] + 1;
-                            DP[i][1][0] = DP[i-1][1][0];
-                        }
-                    }
-                }
-                else { // j > 1
-                    if (DP[i-1][j][0] == null) {
-                        DP[i][j][0] = DP[i-2][j-1][0] + K[i];
-                        DP[i][j][1] = 0;
-                    }
-                    else {
-                        int max = 0;
-                        for (int k = 0; k <= DP[i-1][j][1]; k++) {
-                            max += K[i-k];
-                            if (DP[i-2-k][j-1][0] + max >= DP[i-1][j][0]) {
-                                DP[i][j][0] = DP[i-2-k][j-1][0] + max;
-                                DP[i][j][1] = 0;
-                            }
-                        }
-                        if (DP[i-1][j][0] + max >= DP[i-1][j][0] && DP[i-1][j][0] + max >= DP[i][j][0]) {
-                            DP[i][j][0] = DP[i-1][j][0] + max;
-                            DP[i][j][1] = 0;
-                        }
-                        if (DP[i][j][1] == null) {
-                            DP[i][j][1] = DP[i-1][j][1] + 1;
-                            DP[i][j][0] = DP[i-1][j][0];
-                        }
-                    }
-                }
-                //System.out.println(i + " " + DP[i][1][0]);
-            }
+        n = sc.nextInt();
+        b = new int[n];
+        for(int i=0; i<n; i++) {
+            b[i] = sc.nextInt();
         }
-        System.out.println(DP[N][M][0]);
+        go(open1, open2, 0, 0);
+        System.out.println(ans);
+    }
+    static void go(int open1, int open2, int depth, int move) {
+        if (depth == n) {
+            if (move < ans) ans = move;
+            return;
+        }
+        int tmp1 = Math.abs(open1 - b[depth]);
+        int tmp2 = Math.abs(open2 - b[depth]);
+        go(open1, b[depth], depth + 1, move + tmp2); //open2를 움직이는 경우
+        go(b[depth], open2, depth + 1, move + tmp1); //open1을 움직이는 경우
     }
 }
