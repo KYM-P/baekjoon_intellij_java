@@ -3,33 +3,49 @@ package baekjoon_practice_space;
 import java.util.Scanner;
 
 public class practice_space_1  {
-    static int[] b;
-    static int n, ans = Integer.MAX_VALUE;
-
-    public static void main(String[] args) {
+    static int N;
+    static int M;
+    static int[][] menu;
+    static int min = Integer.MAX_VALUE;
+    static int[] list;
+    static int[] minlist;
+    public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
-        int M = sc.nextInt();
-
-        int open1 = sc.nextInt();
-        int open2 = sc.nextInt();
-
-        n = sc.nextInt();
-        b = new int[n];
-        for(int i=0; i<n; i++) {
-            b[i] = sc.nextInt();
+        // list input
+        N = sc.nextInt();
+        M = sc.nextInt();
+        menu = new int[M+1][2];
+        for (int i = 1; i <= M; i++) {
+            menu[i][0] = sc.nextInt();
+            menu[i][1] = sc.nextInt();
         }
-        go(open1, open2, 0, 0);
-        System.out.println(ans);
+        list = new int[M+1];
+        minlist = new int[M+1];
+        // start
+        start(1,1, N, N, 1, 0);
+        System.out.println(min);
+        for (int i = 1; i <= M; i++) {
+            System.out.println(minlist[i]);
+        }
     }
-    static void go(int open1, int open2, int depth, int move) {
-        if (depth == n) {
-            if (move < ans) ans = move;
+    public static void start(int x1, int y1, int x2, int y2, int next, int value) {
+        if (next == M+1) {
+            if (min > value) {
+                min = value;
+                for (int i = 1; i <= M; i++) {
+                    minlist[i] = list[i];
+                }
+            }
             return;
         }
-        int tmp1 = Math.abs(open1 - b[depth]);
-        int tmp2 = Math.abs(open2 - b[depth]);
-        go(open1, b[depth], depth + 1, move + tmp2); //open2를 움직이는 경우
-        go(b[depth], open2, depth + 1, move + tmp1); //open1을 움직이는 경우
+        else {
+            list[next] = 1;
+            start(menu[next][0],menu[next][1],x2,y2,next+1,value + Math.abs(menu[next][0] - x1)+Math.abs(menu[next][1] - y1));
+            list[next] = 2;
+            start(x1,y1,menu[next][0],menu[next][1],next+1,value + Math.abs(menu[next][0] - x2)+Math.abs(menu[next][1] - y2));
+            list[next] = 0;
+        }
+        return;
     }
 }

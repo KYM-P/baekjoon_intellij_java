@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2666.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2228.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2228.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,22 +45,9 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.practice_space_1">
+  <component name="RunManager" selected="Application.practice_space_2">
     <configuration name="BitMask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm_record.BitMask" />
-      <module name="baekjoon" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="algorithm_record.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FloydWarshall" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="algorithm_record.FloydWarshall" />
       <module name="baekjoon" />
       <extension name="coverage">
         <pattern>
@@ -111,13 +98,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="practice_space_3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.practice_space_3" />
+      <module name="baekjoon" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="baekjoon_practice_space.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.practice_space_1" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.practice_space_2" />
+        <item itemvalue="Application.practice_space_3" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.practice_space_1" />
         <item itemvalue="Application.BitMask" />
-        <item itemvalue="Application.FloydWarshall" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +160,9 @@
       <workItem from="1653469246297" duration="5276000" />
       <workItem from="1653549312512" duration="4812000" />
       <workItem from="1653625139129" duration="16556000" />
-      <workItem from="1653699240743" duration="12068000" />
+      <workItem from="1653699240743" duration="17203000" />
+      <workItem from="1653797067797" duration="27962000" />
+      <workItem from="1653899982648" duration="8568000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1651663341604</created>
@@ -428,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653670568628</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="commit">
+      <created>1653736283220</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1653736283220</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

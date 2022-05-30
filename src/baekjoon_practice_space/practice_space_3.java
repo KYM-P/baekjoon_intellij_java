@@ -2,48 +2,82 @@ package baekjoon_practice_space;
 
 import java.util.Scanner;
 public class practice_space_3 {
-    static int map[][];
-    static Integer dp[][];
-    static int N;
+    static int N_num;
+    static String N;
     static int M;
-
-    public static void main(String[] args) {
+    static boolean[] broken;
+    static int count = 0;
+    static int first = 0;
+    static int row;
+    static int high;
+    static int approximate_value = 0;
+    public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
+        N_num = sc.nextInt();
+        N = N_num + "";
         M = sc.nextInt();
-        map = new int[N][M];
-        dp = new Integer[N][M];
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                map[i][j] = sc.nextInt();
+        broken = new boolean[10];
+        for (int i = 0; i < M; i++) {
+            broken[sc.nextInt()] = true;
+        }
+        if (M == 10) { System.out.println(Math.abs(100 - N_num)); return; } // 즉시 종료
+        row = 10;
+        high = -1;
+        for (int i = 0; i < 10; i++) { // row와 high 구분
+            if (!broken[i]) { // 고장나지 않았다면
+                row = Math.min(i, row);
+                high = Math.max(i, high);
             }
         }
-
-        System.out.println(logic(0, 0));
-    }
-
-    static int logic(int n, int m) {
-        if (n == N - 1 && m == M - 1) {
-            return 1;
+        int high_num = 0;
+        for (int i = 0; i < N.length() + 1; i++) {
+            high_num += row * (int)Math.pow(10,N.length()-i);
+        }
+        first = Math.min(Math.abs(100 - N_num), Math.abs(high_num - N_num) + N.length() + 1);
+        if (1 < N.length()) {
+            int row_num = 0;
+            for (int i = 2; i < N.length() + 1; i++) {
+                row_num += high * (int)Math.pow(10,N.length()-i);
+            }
+            first = Math.min(first, Math.abs(row_num - N_num) + N.length() - 1);
+        }
+        for (int i = 0; i < N.length(); i++) { // 같은 자릿수에서 이동
+            if (!broken[N.charAt(i) - '0']) { // 고장나지 않았다면
+                count++;
+                approximate_value += (N.charAt(i) - '0') * (int)Math.pow(10,N.length()-count);
+            }
+            else {
+                break;
+            }
+        }
+        if (count == N.length()) {
+            System.out.println(Math.min(first, count));
+            return;
         }
         else {
-            if (dp[n][m] == null) {
-                dp[n][m] = 0;
-                if (n + 1 < N && map[n][m] > map[n + 1][m]) { // down
-                    dp[n][m] += logic(n + 1, m);
+            for (int i = 1; i < 11 ; i++) {
+                if (N.charAt(count) - '0' + i < 10 && !broken[N.charAt(count) - '0' + i]) { // 기존 채널보다 큰 채널로 이동할 경우
+                    approximate_value += (N.charAt(count) - '0' + i) * (int)Math.pow(10,N.length()-(count+1));
+                    count++;
+                    for (int k = count; k < N.length(); k++) {
+                        count++;
+                        approximate_value += (row) * (int)Math.pow(10,N.length()-count);
+                    }
+                    break;
                 }
-                if (m + 1 < M && map[n][m] > map[n][m + 1]) { // right
-                    dp[n][m] += logic(n, m + 1);
-                }
-                if (n > 0 && map[n][m] > map[n - 1][m]) { // up
-                    dp[n][m] += logic(n - 1, m);
-                }
-                if (m > 0 && map[n][m] > map[n][m - 1]) { // left
-                    dp[n][m] += logic(n, m - 1);
+                else if (N.charAt(count) - '0' - i > -1 && !broken[N.charAt(count) - '0' - i]) { // 기존 채널보다 작은 채널로 이동할 경우
+                    approximate_value += (N.charAt(count) - '0' - i) * (int)Math.pow(10,N.length()-(count+1));
+                    count++;
+                    for (int k = count; k < N.length(); k++) {
+                        count++;
+                        approximate_value += (high) * (int)Math.pow(10,N.length()-count);
+                    }
+                    break;
                 }
             }
-            return dp[n][m];
         }
+        System.out.println(approximate_value + " " + count);
+        count += Math.abs(approximate_value - N_num);
+        System.out.println(Math.min(first, count));
     }
 }
