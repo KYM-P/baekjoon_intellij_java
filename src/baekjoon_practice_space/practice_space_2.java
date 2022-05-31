@@ -34,6 +34,13 @@ public class practice_space_2 {
                 high = Math.max(i, high);
             }
         }
+        if (1 < N.length()) {
+            int row_num = 0;
+            for (int i = 2; i < N.length() + 1; i++) {
+                row_num += high * (int)Math.pow(10,N.length()-i);
+            }
+            minimum = Math.min(minimum, Math.abs(row_num - N_num) + N.length() - 1);
+        }
         for (int i = 0; i < N.length(); i++) { // 같은 자릿수에서 이동
             if (!broken[N.charAt(i) - '0']) { // 고장나지 않았다면
                 count++;
@@ -49,6 +56,10 @@ public class practice_space_2 {
             return;
         }
         else {
+            if (N.charAt(count) == '0' && count != 0) {
+                count--;
+                approximate_value -= (N.charAt(count) - '0') * (int)Math.pow(10,N.length()-count-1);
+            }
             int sum = 0;
             for (int i = 0; i < N.length() - count + 1; i++) { // 윗 자리
                 if (!broken[0] && i != 0){
@@ -66,7 +77,7 @@ public class practice_space_2 {
             c = 0;
             for (int i = 0; i < 10; i++) { // 같은 자리
                 if (!broken[i]) {
-                    if (i < N.charAt(count)) {
+                    if (i < N.charAt(count) - '0') {
                         sum += i * (int)Math.pow(10,N.length() - count - 1);
                         c++;
                         for (int j = 1; j < N.length() - count; j++) { // 같은 자리
@@ -77,23 +88,24 @@ public class practice_space_2 {
                     else {
                         sum += i * (int)Math.pow(10,N.length() - count -1);
                         c++;
-                        for (int j = 1; j < N.length() - count; j++) { // 같은 자리
-                            sum += row * (int)Math.pow(10,N.length() - count - 1 - j);
-                            c++;
+                        if (!broken[0]) {
+                            for (int j = 1; j < N.length() - count; j++) { // 같은 자리
+                                sum += 0 * (int)Math.pow(10,N.length() - count - 1 - j);
+                                c++;
+                            }
+                        }
+                        else {
+                            for (int j = 1; j < N.length() - count; j++) { // 같은 자리
+                                sum += row * (int)Math.pow(10,N.length() - count - 1 - j);
+                                c++;
+                            }
                         }
                     }
+                    System.out.println("middle " + i + " " + sum);
                     minimum = Math.min(minimum, count + c + Math.abs(sum - (N_num - approximate_value)));
+                    sum = 0;
+                    c = 0;
                 }
-            }
-            sum = 0;
-            c = 0;
-            if (1 < N.length() - count) { // 아랫 자리
-                for (int i = 0; i < N.length() - count - 1; i++) {
-                    sum += high * (int)Math.pow(10,N.length() - count - 2 -i);
-                    c++;
-                }
-                System.out.println("row " + approximate_value + " " + sum + " " + c);
-                minimum = Math.min(minimum, count + c + Math.abs(sum - (N_num - approximate_value)));
             }
         }
         System.out.println(minimum);
