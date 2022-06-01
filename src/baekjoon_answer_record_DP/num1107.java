@@ -1,7 +1,46 @@
-package baekjoon_practice_space;
+package baekjoon_answer_record_DP;
 
 import java.util.Scanner;
-public class practice_space_3 {
+
+public class num1107 {
+    static boolean[] brok;
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        brok = new boolean[10];
+
+        for(int i=0;i<M;i++){
+            brok[sc.nextInt()]=true;
+        }
+
+        int val = Math.abs(N-100);
+        for(int i=0;i<1000000;i++){
+            int len =check(i);
+
+            if(len>0)val=Math.min(Math.abs(N-i)+len,val);
+        }
+        System.out.println(val);
+    }
+    static int check(int n){
+        if(n==0){
+            if(brok[n]){
+                return 0;
+            }
+            return 1;
+        }
+        int length = 0;
+        while(n>0){
+            if(brok[n%10]){
+                return 0;
+            }
+            length++;
+            n/=10;
+        }
+        return length;
+    }
+
+    /* ¿⁄¿€
     static int N_num;
     static String N;
     static int M;
@@ -11,7 +50,7 @@ public class practice_space_3 {
     static int high;
     static int approximate_value = 0;
     static int reset = 0;
-    public static void main(String[] args) { // dp
+    public static void main(String[] args) { //
         Scanner sc = new Scanner(System.in);
         N_num = sc.nextInt();
         N = N_num + "";
@@ -87,4 +126,5 @@ public class practice_space_3 {
         }
         System.out.println(minimum);
     }
+     */
 }

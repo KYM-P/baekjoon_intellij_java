@@ -19,6 +19,7 @@ public class Main {
             task[i][0] = sc.nextInt();
             task[i][1] = sc.nextInt();
         }
-
+        //start
+        DP = new int[M+1][];
     }
 }
