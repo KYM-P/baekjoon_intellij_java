@@ -1,5 +1,6 @@
 package baekjoon_practice_space;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class practice_space_2 {
@@ -7,7 +8,7 @@ public class practice_space_2 {
     static int M;
     static int[][] menu;
     static int min = Integer.MAX_VALUE;
-    static int[] list;
+    static ArrayList<Integer> list = new ArrayList<>();
     static int[] minlist;
     static Integer[][] DP;
     public static void main(String[] args) { // dp
@@ -17,54 +18,67 @@ public class practice_space_2 {
         N = sc.nextInt();
         M = sc.nextInt();
         menu = new int[M+1][2];
-        menu[0][0] = 1;
-        menu[0][1] = 1;
         for (int i = 1; i <= M; i++) {
             menu[i][0] = sc.nextInt();
             menu[i][1] = sc.nextInt();
         }
-        list = new int[M+1];
-        minlist = new int[M+1];
+        minlist = new int[M];
         // start
         DP = new Integer[M+1][M+1];
-        start(0,0,0,0);
+        DP[0][0] = 0;
+        start(0,0);
         System.out.println(min);
-        for (int i = 1; i <= M; i++) {
+        for (int i = 0; i < M; i++) {
             System.out.println(minlist[i]);
         }
     }
-    public static void start(int point1, int point2, int next, int value) {
-        // dp 갱신
-        if (DP[point1][point2] != null && DP[point1][point2] > value) {
-            DP[point1][point2] = value;
-        }
-        else if (DP[point1][point2] != null && DP[point1][point2] <= value) {
-            return;
-        }
-        else if (DP[point1][point2] == null) {
-            DP[point1][point2] = value;
-        }
+    public static void start(int point1, int point2) {
         // 종료 조건
-        if (next == M) {
-            if (min > value) {
-                min = value;
-                for (int i = 1; i <= M; i++) {
-                    minlist[i] = list[i];
+        if (list.size() == M){
+            if (min > DP[point1][point2]) { // 최단기록 갱신시
+                min = DP[point1][point2];
+                for (int i = 0; i < M; i++) { // 최단기록 리스트
+                   minlist[i] = list.get(i);
                 }
             }
             return;
         }
-        // 재귀
-        list[next+1] = 1;
-        start(next+1, point2, next+1, value + Math.abs(menu[point1][0] - menu[next+1][0]) + Math.abs(menu[point1][1] - menu[next+1][1]));
-        list[next+1] = 2;
-        if (point2 == 0) {
-            start(point1, next+1, next+1,value + Math.abs(N - menu[next+1][0]) + Math.abs(N - menu[next+1][1]));
+        // dp 갱신 + 재귀
+        list.add(1);
+        if (point1 == 0) {
+            menu[point1][0] = 1;
+            menu[point1][1] = 1;
+        }
+        if (DP[list.size()][point2] != null) {
+            if (DP[list.size()][point2] > DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1])) {
+                DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
+            }
+            else {
+                return;
+            }
         }
         else {
-            start(point1, next+1, next+1, value + Math.abs(menu[point2][0] - menu[next+1][0]) + Math.abs(menu[point2][1] - menu[next+1][1]));
+            DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
         }
-        list[next+1] = 0;
-        return;
+        start(list.size(),point2);
+        list.remove(list.size()-1);
+        list.add(2);
+        if (point2 == 0) {
+            menu[point2][0] = N;
+            menu[point2][1] = N;
+        }
+        if (DP[list.size()][point2] != null) {
+            if (DP[list.size()][point2] > DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1])) {
+                DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1]);
+            }
+            else {
+                return;
+            }
+        }
+        else {
+            DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
+        }
+        start(list.size(),point2);
+        list.remove(list.size()-1);
     }
 }

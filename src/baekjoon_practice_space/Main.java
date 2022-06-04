@@ -31,7 +31,7 @@ public class Main {
             DP[i][0] = DP[i-1][0] + Math.abs(menu[i-1][0] - menu[i][0]) + Math.abs(menu[i-1][1] - menu[i][1]);
             DP[0][i] = DP[0][i-1] + Math.abs(menu[i-1][0] - menu[i][0]) + Math.abs(menu[i-1][1] - menu[i][1]);
             for (int j = 1; j < i; j++) {
-                DP[i][j] =
+                //DP[i][j] =
             }
         }
 
