@@ -17,6 +17,8 @@ public class Main {
         N = sc.nextInt();
         M = sc.nextInt();
         menu = new int[M+1][2];
+        menu[0][0] = 1;
+        menu[0][1] = 1;
         for (int i = 1; i <= M; i++) {
             menu[i][0] = sc.nextInt();
             menu[i][1] = sc.nextInt();
@@ -24,33 +26,18 @@ public class Main {
         list = new int[M+1];
         minlist = new int[M+1];
         // start
-        DP = new Integer[M+1][3];
-        start(0,0,1,0);
+        DP = new Integer[M+1][M+1];
+        for (int i = 1; i <= M; i++) {
+            DP[i][0] = DP[i-1][0] + Math.abs(menu[i-1][0] - menu[i][0]) + Math.abs(menu[i-1][1] - menu[i][1]);
+            DP[0][i] = DP[0][i-1] + Math.abs(menu[i-1][0] - menu[i][0]) + Math.abs(menu[i-1][1] - menu[i][1]);
+            for (int j = 1; j < i; j++) {
+                DP[i][j] =
+            }
+        }
+
         System.out.println(min);
         for (int i = 1; i <= M; i++) {
             System.out.println(minlist[i]);
         }
-    }
-    public static void start(int point1, int point2, int next, int value) {
-        if (next == M+1) {
-            if (min > value) {
-                min = value;
-                for (int i = 1; i <= M; i++) {
-                    minlist[i] = list[i];
-                }
-            }
-            return;
-        }
-        if (DP[next][0] == null || DP[next][1] == null) {
-            DP[next][0] = next;
-        }
-        else {
-            list[next] = 1;
-            start();
-            list[next] = 2;
-            start();
-            list[next] = 0;
-        }
-        return;
     }
 }

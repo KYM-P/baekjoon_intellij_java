@@ -3,111 +3,68 @@ package baekjoon_practice_space;
 import java.util.Scanner;
 
 public class practice_space_2 {
-    static int N_num;
-    static String N;
+    static int N;
     static int M;
-    static boolean[] broken;
-    static int count = 0;
-    static int minimum = 0;
-    static int row;
-    static int high;
-    static int approximate_value = 0;
+    static int[][] menu;
+    static int min = Integer.MAX_VALUE;
+    static int[] list;
+    static int[] minlist;
+    static Integer[][] DP;
     public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
-        N_num = sc.nextInt();
-        N = N_num + "";
-        minimum = Math.abs(100 - N_num);
+
+        // list input
+        N = sc.nextInt();
         M = sc.nextInt();
-        broken = new boolean[10];
-        for (int i = 0; i < M; i++) {
-            broken[sc.nextInt()] = true;
+        menu = new int[M+1][2];
+        menu[0][0] = 1;
+        menu[0][1] = 1;
+        for (int i = 1; i <= M; i++) {
+            menu[i][0] = sc.nextInt();
+            menu[i][1] = sc.nextInt();
         }
-        if (M == 10) { System.out.println(Math.abs(minimum)); return; } // 즉시 종료
-        row = 10;
-        high = -1;
-        int c = 0;
-        for (int i = 0; i < 10; i++) { // row와 high 구분
-            if (!broken[i]) { // 고장나지 않았다면
-                if (i != 0) {
-                    row = Math.min(i, row);
-                }
-                high = Math.max(i, high);
-            }
+        list = new int[M+1];
+        minlist = new int[M+1];
+        // start
+        DP = new Integer[M+1][M+1];
+        start(0,0,0,0);
+        System.out.println(min);
+        for (int i = 1; i <= M; i++) {
+            System.out.println(minlist[i]);
         }
-        if (1 < N.length()) {
-            int row_num = 0;
-            for (int i = 2; i < N.length() + 1; i++) {
-                row_num += high * (int)Math.pow(10,N.length()-i);
-            }
-            minimum = Math.min(minimum, Math.abs(row_num - N_num) + N.length() - 1);
+    }
+    public static void start(int point1, int point2, int next, int value) {
+        // dp 갱신
+        if (DP[point1][point2] != null && DP[point1][point2] > value) {
+            DP[point1][point2] = value;
         }
-        for (int i = 0; i < N.length(); i++) { // 같은 자릿수에서 이동
-            if (!broken[N.charAt(i) - '0']) { // 고장나지 않았다면
-                count++;
-                approximate_value += (N.charAt(i) - '0') * (int)Math.pow(10,N.length()-count);
-                c = -1;
-            }
-            else {
-                break;
-            }
-        }
-        if (count == N.length()) {
-            System.out.println(Math.min(minimum, count));
+        else if (DP[point1][point2] != null && DP[point1][point2] <= value) {
             return;
         }
-        else {
-            if (N.charAt(count) == '0' && count != 0) {
-                count--;
-                approximate_value -= (N.charAt(count) - '0') * (int)Math.pow(10,N.length()-count-1);
-            }
-            int sum = 0;
-            for (int i = 0; i < N.length() - count + 1; i++) { // 윗 자리
-                if (!broken[0] && i != 0){
-                    c++;
-                    continue;
-                }
-                else {
-                    c++;
-                    sum += row * (int)Math.pow(10,N.length() - count - i);
-                }
-            }
-            System.out.println("high " + approximate_value + " " + sum + " " + c);
-            minimum = Math.min(minimum, count + c + (sum - (N_num - approximate_value)) );
-            sum = 0;
-            c = 0;
-            for (int i = 0; i < 10; i++) { // 같은 자리
-                if (!broken[i]) {
-                    if (i < N.charAt(count) - '0') {
-                        sum += i * (int)Math.pow(10,N.length() - count - 1);
-                        c++;
-                        for (int j = 1; j < N.length() - count; j++) { // 같은 자리
-                            sum += high * (int)Math.pow(10,N.length() - count - 1 - j);
-                            c++;
-                        }
-                    }
-                    else {
-                        sum += i * (int)Math.pow(10,N.length() - count -1);
-                        c++;
-                        if (!broken[0]) {
-                            for (int j = 1; j < N.length() - count; j++) { // 같은 자리
-                                sum += 0 * (int)Math.pow(10,N.length() - count - 1 - j);
-                                c++;
-                            }
-                        }
-                        else {
-                            for (int j = 1; j < N.length() - count; j++) { // 같은 자리
-                                sum += row * (int)Math.pow(10,N.length() - count - 1 - j);
-                                c++;
-                            }
-                        }
-                    }
-                    System.out.println("middle " + i + " " + sum);
-                    minimum = Math.min(minimum, count + c + Math.abs(sum - (N_num - approximate_value)));
-                    sum = 0;
-                    c = 0;
-                }
-            }
+        else if (DP[point1][point2] == null) {
+            DP[point1][point2] = value;
         }
-        System.out.println(minimum);
+        // 종료 조건
+        if (next == M) {
+            if (min > value) {
+                min = value;
+                for (int i = 1; i <= M; i++) {
+                    minlist[i] = list[i];
+                }
+            }
+            return;
+        }
+        // 재귀
+        list[next+1] = 1;
+        start(next+1, point2, next+1, value + Math.abs(menu[point1][0] - menu[next+1][0]) + Math.abs(menu[point1][1] - menu[next+1][1]));
+        list[next+1] = 2;
+        if (point2 == 0) {
+            start(point1, next+1, next+1,value + Math.abs(N - menu[next+1][0]) + Math.abs(N - menu[next+1][1]));
+        }
+        else {
+            start(point1, next+1, next+1, value + Math.abs(menu[point2][0] - menu[next+1][0]) + Math.abs(menu[point2][1] - menu[next+1][1]));
+        }
+        list[next+1] = 0;
+        return;
     }
 }
