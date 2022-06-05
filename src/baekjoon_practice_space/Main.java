@@ -26,12 +26,12 @@ public class Main {
     public static int start(int point1, int point2) {
         int next = Math.max(point1, point2) + 1;
         if (next == M + 1) {
+            DP[point1][point2] = 0;
             return 0;
         }
         if(DP[point1][point2] != null) {
             return DP[point1][point2];
         }
-        System.out.println(point1 + " " + point2);
         DP[point1][point2] = Math.min(start(next,point2) + Math.abs((point1==0?1:menu[point1][0]) - menu[next][0]) + Math.abs((point1==0?1:menu[point1][1]) - menu[next][1]), start(point1,next) + Math.abs((point2==0?N:menu[point2][0]) - menu[next][0]) + Math.abs((point2==0?N:menu[point2][1]) - menu[next][1]));
         return DP[point1][point2];
     }
