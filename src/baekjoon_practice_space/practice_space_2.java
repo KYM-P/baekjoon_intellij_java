@@ -27,6 +27,7 @@ public class practice_space_2 {
         DP = new Integer[M+1][M+1];
         DP[0][0] = 0;
         start(0,0);
+        System.out.println("---");
         System.out.println(min);
         for (int i = 0; i < M; i++) {
             System.out.println(minlist[i]);
@@ -54,12 +55,14 @@ public class practice_space_2 {
                 DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
             }
             else {
+                list.remove(list.size()-1);
                 return;
             }
         }
         else {
             DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
         }
+        System.out.println(list.size() + " " + point2 + " " + DP[list.size()][point2]);
         start(list.size(),point2);
         list.remove(list.size()-1);
         list.add(2);
@@ -67,18 +70,20 @@ public class practice_space_2 {
             menu[point2][0] = N;
             menu[point2][1] = N;
         }
-        if (DP[list.size()][point2] != null) {
-            if (DP[list.size()][point2] > DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1])) {
-                DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1]);
+        if (DP[point1][list.size()] != null) {
+            if (DP[point1][list.size()] > DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1])) {
+                DP[point1][list.size()] = DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1]);
             }
             else {
+                list.remove(list.size()-1);
                 return;
             }
         }
         else {
-            DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
+            DP[point1][list.size()] = DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1]);
         }
-        start(list.size(),point2);
+        System.out.println(point1 + " " + list.size() + " " + DP[point1][list.size()]);
+        start(point1,list.size());
         list.remove(list.size()-1);
     }
 }
