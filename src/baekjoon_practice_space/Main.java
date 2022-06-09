@@ -12,6 +12,6 @@ public class Main {
         N = sc.nextInt();
 
         // start
-
+        DP = new int[N/2];
     }
 }
