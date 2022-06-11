@@ -18,13 +18,14 @@ public class practice_space_1  {
             DP[i][0] = 1;
             for (int j = 1; Math.pow(2,j) <= i*2; j++) {
                 DP[i][j] += DP[i - (int)Math.pow(2,j-1)][0];
-                for (int k = 1; Math.pow(2,k) <= i - (int)Math.pow(2,j-1); k++){
+                for (int k = 1; Math.pow(2,k) <= i*2 - (int)Math.pow(2,j); k++){
                     DP[i][j] += DP[i - (int)Math.pow(2,j-1)][k];
                 }
             }
         }
         int result = 0;
         for (int i = 0; i < 21; i++) {
+            System.out.println(i + " " + DP[N][i]);
             result += DP[N][i];
         }
         System.out.println(result);

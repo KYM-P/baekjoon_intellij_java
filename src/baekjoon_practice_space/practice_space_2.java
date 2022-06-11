@@ -1,89 +1,52 @@
 package baekjoon_practice_space;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class practice_space_2 {
-    static int N;
-    static int M;
-    static int[][] menu;
-    static int min = Integer.MAX_VALUE;
-    static ArrayList<Integer> list = new ArrayList<>();
-    static int[] minlist;
-    static Integer[][] DP;
-    public static void main(String[] args) { // dp
-        Scanner sc = new Scanner(System.in);
+    private static int dp[][];
+    private static int MOD = 1000000000;
+    private static int result = 0;
 
-        // list input
-        N = sc.nextInt();
-        M = sc.nextInt();
-        menu = new int[M+1][2];
-        for (int i = 1; i <= M; i++) {
-            menu[i][0] = sc.nextInt();
-            menu[i][1] = sc.nextInt();
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+
+        dp = new int[n+1][20]; // 0, 0 은안씀
+
+
+        System.out.println(dinamic_programming(n, 19));
+
+
+		/*
+		 * 간단하게 푸는로직
+		int dp2[] = new int[n+1];
+		dp2[0] = 1;
+		dp2[1] = 1;
+		for(int i = 2 ; i <= n ; i ++)
+			dp2[i] = (dp2[i-2] + dp2[i/2])%MOD;
+		System.out.println(dp2[n]);
+		*/
+    } //DP 사용
+    private static int dinamic_programming(int i , int j) {
+        if(i < 0)
+            return 0;
+
+        if(i == 0)
+            return 1;
+
+        if(i > 0 && j == 0)
+            return dp[i][0] = 1;
+
+        if(dp[i][j] != 0)
+            return dp[i][j];
+
+        int check = i - (int)Math.pow(2 , j);
+
+        if (check >= 0) {
+            return (dp[i][j-1] = dinamic_programming(i, j - 1) % MOD) + (dp[check][j] = dinamic_programming(check, j) % MOD);
+        }else {
+            return dp[i][j] = dinamic_programming(i , j-1) % MOD;
         }
-        minlist = new int[M];
-        // start
-        DP = new Integer[M+1][M+1];
-        DP[0][0] = 0;
-        start(0,0);
-        System.out.println("---");
-        System.out.println(min);
-        for (int i = 0; i < M; i++) {
-            System.out.println(minlist[i]);
-        }
-    }
-    public static void start(int point1, int point2) {
-        // 종료 조건
-        if (list.size() == M){
-            if (min > DP[point1][point2]) { // 최단기록 갱신시
-                min = DP[point1][point2];
-                for (int i = 0; i < M; i++) { // 최단기록 리스트
-                   minlist[i] = list.get(i);
-                }
-            }
-            return;
-        }
-        // dp 갱신 + 재귀
-        list.add(1);
-        if (point1 == 0) {
-            menu[point1][0] = 1;
-            menu[point1][1] = 1;
-        }
-        if (DP[list.size()][point2] != null) {
-            if (DP[list.size()][point2] > DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1])) {
-                DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
-            }
-            else {
-                list.remove(list.size()-1);
-                return;
-            }
-        }
-        else {
-            DP[list.size()][point2] = DP[point1][point2] + Math.abs(menu[point1][0] - menu[list.size()][0]) + Math.abs(menu[point1][1] - menu[list.size()][1]);
-        }
-        System.out.println(list.size() + " " + point2 + " " + DP[list.size()][point2]);
-        start(list.size(),point2);
-        list.remove(list.size()-1);
-        list.add(2);
-        if (point2 == 0) {
-            menu[point2][0] = N;
-            menu[point2][1] = N;
-        }
-        if (DP[point1][list.size()] != null) {
-            if (DP[point1][list.size()] > DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1])) {
-                DP[point1][list.size()] = DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1]);
-            }
-            else {
-                list.remove(list.size()-1);
-                return;
-            }
-        }
-        else {
-            DP[point1][list.size()] = DP[point1][point2] + Math.abs(menu[point2][0] - menu[list.size()][0]) + Math.abs(menu[point2][1] - menu[list.size()][1]);
-        }
-        System.out.println(point1 + " " + list.size() + " " + DP[point1][list.size()]);
-        start(point1,list.size());
-        list.remove(list.size()-1);
     }
 }
