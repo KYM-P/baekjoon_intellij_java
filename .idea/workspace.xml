@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_answer_record_DP/num2410.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +174,7 @@
       <workItem from="1654781988889" duration="4603000" />
       <workItem from="1654858748147" duration="10157000" />
       <workItem from="1654943080635" duration="6861000" />
+      <workItem from="1655044772111" duration="622000" />
     </task>
     <task id="LOCAL-00002" summary="commit">
       <created>1651665610536</created>
