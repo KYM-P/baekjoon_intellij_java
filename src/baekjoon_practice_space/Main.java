@@ -4,35 +4,56 @@ import java.util.Scanner;
 
 public class Main {
     static int N;
-    static int[][] DP;
+    static int M;
+    static int K;
+    static int[][] score; // score[i][j] i 에서 j 로 가는 항로의 기내식 점수
+    static int[] DP; // DP[i] i번째 도시 방문에서의 최대 점수
     public static void main(String[] args) { // dp
         Scanner sc = new Scanner(System.in);
 
         // list input
         N = sc.nextInt();
-        N = N/2; // 내림
+        M = sc.nextInt();
+        K = sc.nextInt();
+        score = new int[N+1][N+1];
+        for (int k = 0; k < K; k++) {
+            int i = sc.nextInt();
+            int j = sc.nextInt();
+            score[i][j] = Math.max(sc.nextInt(), score[i][j]);
+        }
         // start
-        int div = 1000000000;
-        // DP[i][j] 홀수일 때는 바로전 짝수일 때의 경우의 수와 같으므로 해당 짝수의 데이터만 메모하기 위해 홀수를 내림짝수로 변환하여 저장
-        DP = new int[500001][21]; // 2^20 = 1,048,576  i*2(짝수로 바꾼 원본값) 값 일때   2^j 값이 최대인 표현법들 메모
-        DP[0][0] = 1;
-        for (int i = 1; i <= N; i++) {
-            DP[i][0] = 1;
-            for (int j = 1; Math.pow(2,j) <= i*2; j++) {
-                DP[i][j] += DP[i - (int)Math.pow(2,j-1)][0] % div;
-                DP[i][j] %= div;
-                for (int k = 1; k <= j; k++){
-                    DP[i][j] += DP[i - (int)Math.pow(2,j-1)][k] % div;
-                    DP[i][j] %= div;
+        DP = new int[N+1];
+        move(1,1);
+        System.out.println(DP[N]);
+    }
+    public static void move(int i, int j){
+        if (j == M-1) {
+            System.out.println(i + " to " + N);
+            if (score[i][N] != 0) {
+                if (DP[N] < DP[i] + score[i][N]){
+                    DP[N] = DP[i] + score[i][N];
+                    System.out.println("reload " + i + " to " + N + " = " + DP[N]);
+                }
+            }
+            return;
+        }
+        for (int k = i+1; k <= N; k++) {
+            if (score[i][k] != 0) {
+                System.out.println(i + " to " + k);
+                if (k == N) {
+                    if (DP[k] < DP[i] + score[i][k]){
+                        DP[k] = DP[i] + score[i][k];
+                        System.out.println("reload " + i + " to " + k + " = " + DP[k]);
+                    }
+                }
+                else {
+                    if (DP[k] < DP[i] + score[i][k]){
+                        DP[k] = DP[i] + score[i][k];
+                        System.out.println("reload " + i + " to " + k + " = " + DP[k]);
+                        move(k, j+1);
+                    }
                 }
             }
         }
-        int result = 0;
-        for (int i = 0; i < 21; i++) {
-            // System.out.println(i + " " + DP[N][i]);
-            result += DP[N][i];
-            result %= div;
-        }
-        System.out.println(result % div);
     }
 }
