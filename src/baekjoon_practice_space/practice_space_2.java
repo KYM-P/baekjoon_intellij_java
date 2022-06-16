@@ -1,52 +1,98 @@
 package baekjoon_practice_space;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class practice_space_2 {
+
     private static int dp[][];
-    private static int MOD = 1000000000;
-    private static int result = 0;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
 
-        int n = scanner.nextInt();
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
-        dp = new int[n+1][20]; // 0, 0 은안씀
+        StringTokenizer st =new StringTokenizer(bf.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        // DP[M][N] = M번 도시 방문 했을 때 도착 도시 번호가 N
+        dp = new int[M+1][N+1];
+
+        List<Node> boards[] = new List[N+1];
+
+        for(int i=0;i<=N;i++){
+            boards[i]=new ArrayList<>();
+        }
+
+        for(int i=0;i<K;i++){
+
+            st = new StringTokenizer(bf.readLine());
+
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
+
+            if(a > b){
+                continue;
+            }
+
+            boards[a].add(new Node(b,c));
+        }
+
+        int result=0;
+
+        Queue<Integer> q = new LinkedList<>();
+
+        q.add(1);
+
+        int cnt=1;
+
+        while(!q.isEmpty() && cnt < M){
+
+            int size = q.size();
+
+            while(size-- > 0){
+                int nowIndex = q.poll();
+                for(Node nextNode : boards[nowIndex]){
+
+                    int nextIndex = nextNode.index;
+                    int nextScore = dp[cnt][nowIndex]+nextNode.score;
+
+                    if(dp[cnt+1][nextIndex] >= nextScore){
+                        continue;
+                    }
+
+                    dp[cnt+1][nextIndex] = nextScore;
+
+                    q.add(nextIndex);
+
+                }
+
+            }
+            cnt++;
+
+        }
+
+        for(int i=2;i<=M;i++){
+            result = Integer.max(result,dp[i][N]);
+        }
+
+        System.out.println(result);
 
 
-        System.out.println(dinamic_programming(n, 19));
+    }
 
+    public static class Node{
+        int index;
+        int score;
 
-		/*
-		 * 간단하게 푸는로직
-		int dp2[] = new int[n+1];
-		dp2[0] = 1;
-		dp2[1] = 1;
-		for(int i = 2 ; i <= n ; i ++)
-			dp2[i] = (dp2[i-2] + dp2[i/2])%MOD;
-		System.out.println(dp2[n]);
-		*/
-    } //DP 사용
-    private static int dinamic_programming(int i , int j) {
-        if(i < 0)
-            return 0;
-
-        if(i == 0)
-            return 1;
-
-        if(i > 0 && j == 0)
-            return dp[i][0] = 1;
-
-        if(dp[i][j] != 0)
-            return dp[i][j];
-
-        int check = i - (int)Math.pow(2 , j);
-
-        if (check >= 0) {
-            return (dp[i][j-1] = dinamic_programming(i, j - 1) % MOD) + (dp[check][j] = dinamic_programming(check, j) % MOD);
-        }else {
-            return dp[i][j] = dinamic_programming(i , j-1) % MOD;
+        public Node(int index, int score) {
+            this.index = index;
+            this.score = score;
         }
     }
 }
