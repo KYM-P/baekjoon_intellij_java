@@ -7,7 +7,7 @@ public class practice_space_3 {
     static int N;
     static int M;
     static int K;
-    static int[][] score; // score[i][j] i 에서 j 로 가는 항로의 기내식 점수
+    static int[][] score; // next[i][j] i 에서 j 로 가는 항로의 기내식 점수
     static int[][] DP; // DP[i][k] i번째 도시 k 번째 방문에서의 점수
     static int max = 0;
     public static void main(String[] args) throws IOException { // dp

@@ -8,7 +8,8 @@ public class practice_space_1  {
     static int N;
     static int M;
     static int K;
-    static LinkedList<Integer>[] score; // score[i][j] i 에서 j 로 가는 항로의 기내식 점수
+    static int[][] score; // score[i][j] i 에서 j 로 가는 항로의 기내식 점수
+    static LinkedList<Integer>[] next; // next[i] i 에서 갈 수 있는 경로 리스트
     static int[][] DP; // DP[i][k] i번째 도시 k 번째 방문에서의 점수
     static int max = 0;
     public static void main(String[] args) throws IOException { // dp
@@ -20,14 +21,31 @@ public class practice_space_1  {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        for (int i = 1; i <= N; i++) {
 
+        score = new int[N+1][N+1];
+
+        next = new LinkedList[N+1];
+        for (int i = 1; i <= N; i++) {
+            next[i] = new LinkedList<>();
         }
+
         for (int k = 0; k < K; k++) {
             st = new StringTokenizer(br.readLine());
             int i = Integer.parseInt(st.nextToken());
             int j = Integer.parseInt(st.nextToken());
-            score[i][j] = Math.max(Integer.parseInt(st.nextToken()), score[i][j]);
+            int s = Integer.parseInt(st.nextToken());
+            if (i >= j) {
+                continue;
+            }
+            else {
+                next[i].add(j);
+                if (score[i][j] <= s) {
+                    score[i][j] = s;
+                }
+                else {
+                    next[i].removeLast();
+                }
+            }
         }
         // start
         DP = new int[N+1][M+1];
@@ -44,19 +62,17 @@ public class practice_space_1  {
             }
             return;
         }
-        for (int k = i+1; k <= N; k++) {
-            if (score[i][k] != 0) {
-                if (k == N) {
-                    if (DP[k][j+1] < DP[i][j] + score[i][k]){
-                        DP[k][j+1] = DP[i][j] + score[i][k];
-                        max = Math.max(max, DP[k][j+1]);
-                    }
+        for (int k : next[i]) {
+            if (k == N) {
+                if (DP[k][j+1] < DP[i][j] + score[i][k]){
+                    DP[k][j+1] = DP[i][j] + score[i][k];
+                    max = Math.max(max, DP[k][j+1]);
                 }
-                else {
-                    if (DP[k][j+1] < DP[i][j] + score[i][k]){
-                        DP[k][j+1] = DP[i][j] + score[i][k];
-                        move(k, j+1);
-                    }
+            }
+            else{
+                if (DP[k][j+1] < DP[i][j] + score[i][k]){
+                    DP[k][j+1] = DP[i][j] + score[i][k];
+                    move(k, j+1);
                 }
             }
         }

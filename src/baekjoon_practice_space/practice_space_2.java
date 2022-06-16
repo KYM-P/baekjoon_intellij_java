@@ -60,13 +60,13 @@ public class practice_space_2 {
                 for(Node nextNode : boards[nowIndex]){
 
                     int nextIndex = nextNode.index;
-                    int nextScore = dp[cnt][nowIndex]+nextNode.score;
+                    int nextnext = dp[cnt][nowIndex]+nextNode.next;
 
-                    if(dp[cnt+1][nextIndex] >= nextScore){
+                    if(dp[cnt+1][nextIndex] >= nextnext){
                         continue;
                     }
 
-                    dp[cnt+1][nextIndex] = nextScore;
+                    dp[cnt+1][nextIndex] = nextnext;
 
                     q.add(nextIndex);
 
@@ -88,11 +88,11 @@ public class practice_space_2 {
 
     public static class Node{
         int index;
-        int score;
+        int next;
 
-        public Node(int index, int score) {
+        public Node(int index, int next) {
             this.index = index;
-            this.score = score;
+            this.next = next;
         }
     }
 }
