@@ -41,7 +41,7 @@ public class Main {
             int count = Math.min(UP[i], Down[i]);
             count = count/3 + ((count%3 > 0)?1:0);
             DP[i] = count + DP[i-1];
-            // case 2
+            // case 2 .
             if (i > 1) {
                 // UP
                 if (UP[i] <= UP[i-1]) {
