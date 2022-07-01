@@ -26,7 +26,7 @@ public class Main {
                     UP[i][j] = 10 - Down[i][j];
                 }
                 else if (i < j) {
-                    UP[i][j] = i - j;
+                    UP[i][j] = j - i;
                     Down[i][j] = 10 - UP[i][j];
                 }
                 else {
@@ -38,12 +38,12 @@ public class Main {
         // start
         DP = new int[N+1];
         for (int i = 1; i <= N; i++) {
-            DP[i] = one(table.charAt(i-1) - '0', i-1);
+            DP[i] = DP[i-1] + one(table.charAt(i-1) - '0', i-1);
             if (i > 1) {
-                DP[i] = Math.min(DP[i], two(table.charAt(i-2) - '0',table.charAt(i-1) - '0', i-1));
+                DP[i] = Math.min(DP[i], DP[i-2] + two(table.charAt(i-2) - '0',table.charAt(i-1) - '0', i-1));
             }
             if (i > 2) {
-                DP[i] = Math.min(DP[i], three(table.charAt(i-3) - '0',table.charAt(i-2) - '0',table.charAt(i-1) - '0', i-1));
+                DP[i] = Math.min(DP[i], DP[i-3] + three(table.charAt(i-3) - '0',table.charAt(i-2) - '0',table.charAt(i-1) - '0', i-1));
             }
         }
         System.out.println(DP[N]);
@@ -69,12 +69,12 @@ public class Main {
             int value_1 = 0;
             if (UP[first_value][first_goal] < UP[second_value][second_goal]) {
                 value_1 = (UP[first_value][first_goal] + second_value);
-                value_1 = value_1>10?10-value_1:value_1;
+                value_1 = value_1>9?value_1-10:value_1;
                 up_count = counting(UP[first_value][first_goal]) + one(value_1, lastindex);
             }
             else {
                 value_1 = (UP[second_value][second_goal] + first_value);
-                value_1 = value_1>10?10-value_1:value_1;
+                value_1 = value_1>9?value_1-10:value_1;
                 up_count = counting(UP[second_value][second_goal]) + one(value_1, lastindex-1);
             }
             // down
@@ -116,7 +116,7 @@ public class Main {
             int value_1 = 0;
             if (UP[third_value][third_goal] < Down[third_value][third_goal]) {
                 value_1 = UP[third_value][third_goal] + second_value;
-                value_1 = value_1>10?10-value_1:value_1;
+                value_1 = value_1>9?value_1-10:value_1;
                 return counting(UP[third_value][third_goal]) + one(value_1, lastindex-1);
             }
             // down
@@ -135,25 +135,25 @@ public class Main {
             if (minimum_up == UP[first_value][first_goal]){
                 del = UP[first_value][first_goal];
                 two_1 = del + second_value;
-                two_1 = two_1>10?10-two_1:two_1;
+                two_1 = two_1>9?two_1-10:two_1;
                 two_2 = del + third_value;
-                two_2 = two_2>10?10-two_2:two_2;
+                two_2 = two_2>9?two_2-10:two_2;
                 up_count = counting(del) + two(two_1,two_2,lastindex);
             }
             else if (minimum_up == UP[second_value][second_goal]){
                 del = UP[second_value][second_goal];
                 two_1 = del + first_value;
-                two_1 = two_1>10?10-two_1:two_1;
+                two_1 = two_1>9?two_1-10:two_1;
                 two_2 = del + third_value;
-                two_2 = two_2>10?10-two_2:two_2;
+                two_2 = two_2>9?two_2-10:two_2;
                 up_count = counting(del) + one(two_1, lastindex-2) + one(two_2, lastindex);
             }
             else {
                 del = UP[third_value][third_goal];
                 two_1 = del + first_value;
-                two_1 = two_1>10?10-two_1:two_1;
+                two_1 = two_1>9?two_1-10:two_1;
                 two_2 = del + second_value;
-                two_2 = two_2>10?10-two_2:two_2;
+                two_2 = two_2>9?two_2-10:two_2;
                 up_count = counting(del) + two(two_1,two_2,lastindex-1);
             }
             // down
