@@ -7,6 +7,7 @@
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/practice_space_2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,13 +196,9 @@
       <workItem from="1656395294618" duration="7251000" />
       <workItem from="1656499076621" duration="4029000" />
       <workItem from="1656586712829" duration="14481000" />
-    </task>
-    <task id="LOCAL-00019" summary="commit">
-      <created>1652367212192</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1652367212192</updated>
+      <workItem from="1656685165625" duration="1647000" />
+      <workItem from="1656746024252" duration="1448000" />
+      <workItem from="1656941050528" duration="3187000" />
     </task>
     <task id="LOCAL-00020" summary="commit">
       <created>1652428886023</created>
@@ -539,7 +536,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656600636253</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="commit">
+      <created>1656685312101</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1656685312102</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

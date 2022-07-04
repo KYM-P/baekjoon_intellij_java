@@ -1,166 +1,192 @@
 package baekjoon_practice_space;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class practice_space_2 {
-    /*
-
     static int N;
     static String table;
     static String goal;
-    static Integer[][] UP;
-    static Integer[][] Down;
+    static int[][] UP;
+    static int[][] Down;
     static int[] DP;
-
-    public static void main(String[] args) { // dp
+    public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
-
         // list input
         N = sc.nextInt();
         sc.nextLine();
         table = sc.nextLine();
         goal = sc.nextLine();
-
-        // start
-        UP = new Integer[10][10];
-        Down = new Integer[10][10];
-        DP = new int[N + 1];
-        //System.out.println(table + " " + goal);
-        for (int i = 1; i <= N; i++) {
-
-            if (i > 1) {
-
-            }
-            if (i > 2) {
-
-            }
-        }
-
-    }
-    public static int up_size(int table_n,int goal_n){
-        if (table_n > goal_n) {
-            return (10 - table_n) + goal_n;
-        }
-        else if (table_n < goal_n) {
-            return goal_n - table_n;
-        }
-        else { // table-N == goal_n
-            return  0;
-        }
-    }
-    public static int down_size(int table_n,int goal_n){
-        if (table_n > goal_n) {
-            return goal_n - table_n;
-        }
-        else if (table_n < goal_n) {
-            return (10 - table_n) + goal_n;
-        }
-        else { // table-N == goal_n
-            return  0;
-        }
-    }
-    public static int first (int a) {
-        int count = 0;
-        count += a/3 + ((a%3 > 0)?1:0);
-        return count;
-    }
-    public static int second (int a, int b, int lastindex, boolean up_t) {
-        int count = 0;
-        int del;
-        int main = 0;
-        int not_correct_index = 0;
-        if (a > b) {
-            count += b/3 + ((b%3 > 0)?1:0);
-            main = b;
-            not_correct_index = lastindex - 0;
-        }
-        else if (a < b) {
-            count += a/3 + ((a%3 > 0)?1:0);
-            main = a;
-            not_correct_index = lastindex - 1;
-        }
-        else { // a == b
-            count += a/3 + ((a%3 > 0)?1:0);
-            return count;
-        }
-        if (up_t) {
-            del = (table.charAt(not_correct_index) - '0') + main;
-            del = (del>9)?del-10:del;
-        }
-        else {
-            del = (table.charAt(not_correct_index) - '0') - main;
-            del = (del<0)?del+10:del;
-        }
-        if (UP[goal.charAt(not_correct_index) - '0'][del] == null){
-            memo(goal.charAt(not_correct_index) - '0',del);
-        }
-        return count + Math.min(first(UP[goal.charAt(not_correct_index) - '0'][del]), first(Down[goal.charAt(not_correct_index) - '0'][del]));
-    }
-    public static int third (int a, int b, int c, int lastindex, boolean up_t) {
-        int count = 0;
-        int del;
-        int main = 0;
-        int not_correct_index = 0;
-        if (a == b && b == c) {
-            count += a/3 + ((a%3 > 0)?1:0);
-            return count;
-
-        }
-        else if (a == b) {
-            count += a/3 + ((a%3 > 0)?1:0);
-            main = a;
-            not_correct_index = lastindex - 2;
-        }
-        else if (b == c) {
-            count += b/3 + ((b%3 > 0)?1:0);
-            main = b;
-            not_correct_index = lastindex - 0;
-        }
-        else if (c == a) {
-            count += c/3 + ((c%3 > 0)?1:0);
-            main = c;
-            not_correct_index = lastindex - 1;
-        }
-        else {
-            int minimum = Math.min(Math.min(a,b),c);
-            if (minimum == a) {
-                count += a/3 + ((a%3 > 0)?1:0);
-                if (up_t) {
-                    return count + Math.min(second(UP[goal.charAt(lastindex - 1) - '0'][b-a], UP[goal.charAt(lastindex - 2) - '0'][c-a], lastindex - 1, true) ,second(Down[goal.charAt(lastindex - 1) - '0'][b-a], Down[goal.charAt(lastindex - 2) - '0'][c-a], lastindex - 1, false));
+        UP = new int[10][10];
+        Down = new int[10][10];
+        for (int i = 0; i < 10; i ++) { // UP, Down 배열 작성
+            for (int j = 0; j < 10; j++) {
+                if (i > j) {
+                    Down[i][j] = i - j;
+                    UP[i][j] = 10 - Down[i][j];
+                }
+                else if (i < j) {
+                    UP[i][j] = j - i;
+                    Down[i][j] = 10 - UP[i][j];
                 }
                 else {
-                    return count + Math.min(second(UP[goal.charAt(lastindex - 1) - '0'][b-a], UP[goal.charAt(lastindex - 2) - '0'][c-a], lastindex - 1, true) ,second(Down[goal.charAt(lastindex - 1) - '0'][b-a], Down[goal.charAt(lastindex - 2) - '0'][c-a], lastindex - 1, false));
+                    UP[i][j] = 0;
+                    Down[i][j] = 0;
                 }
             }
-            else if (minimum == c) {
-                count += c/3 + ((c%3 > 0)?1:0);
+        }
+        // start
+        DP = new int[N+1];
+        for (int i = 1; i <= N; i++) {
+            DP[i] = DP[i-1] + one(table.charAt(i-1) - '0', i-1);
+            if (i > 1) {
+                DP[i] = Math.min(DP[i], DP[i-2] + two(table.charAt(i-2) - '0',table.charAt(i-1) - '0', i-1));
+            }
+            if (i > 2) {
+                DP[i] = Math.min(DP[i], DP[i-3] + three(table.charAt(i-3) - '0',table.charAt(i-2) - '0',table.charAt(i-1) - '0', i-1));
+            }
+        }
+        System.out.println(DP[N]);
+    }
+    public static int counting(int a) {
+        return a/3 + ((a%3 > 0)?1:0);
+    }
+    public static int one(int first_value,int lastindex) {
+        int first_goal = goal.charAt(lastindex) - '0';
+        int minimum = Math.min(UP[first_value][first_goal],Down[first_value][first_goal]);
+        return counting(minimum);
+    }
+    public static int two(int first_value,int second_value ,int lastindex) {
+        int first_goal = goal.charAt(lastindex-1) - '0';
+        int second_goal = goal.charAt(lastindex) - '0';
+        int up_count;
+        int down_count;
+        if (UP[first_value][first_goal] == UP[second_value][second_goal]) { // 조기 종료
+            return one(second_value, lastindex);
+        }
+        else { // 단축 가능
+            // up
+            int value_1 = 0;
+            if (UP[first_value][first_goal] < UP[second_value][second_goal]) {
+                value_1 = (UP[first_value][first_goal] + second_value);
+                value_1 = value_1>9?value_1-10:value_1;
+                up_count = counting(UP[first_value][first_goal]) + one(value_1, lastindex);
             }
             else {
+                value_1 = (UP[second_value][second_goal] + first_value);
+                value_1 = value_1>9?value_1-10:value_1;
+                up_count = counting(UP[second_value][second_goal]) + one(value_1, lastindex-1);
+            }
+            // down
+            if (Down[first_value][first_goal] < Down[second_value][second_goal]) {
+                value_1 = (second_value - Down[first_value][first_goal]);
+                value_1 = value_1<0?value_1+10:value_1;
+                down_count = counting(Down[first_value][first_goal]) + one(value_1, lastindex);
+            }
+            else {
+                value_1 = (first_value - Down[second_value][second_goal]);
+                value_1 = value_1<0?value_1+10:value_1;
+                down_count = counting(Down[second_value][second_goal]) + one(value_1, lastindex-1);
+            }
+            if (up_count <= down_count){
+                return up_count;
+            }
+            else{
+                return  down_count;
             }
         }
-        // if ~ else if
-        if (up_t) {
-            del = (table.charAt(not_correct_index) - '0') + main;
-            del = (del>9)?del-10:del;
+    }
+    public static int three(int first_value,int second_value ,int third_value ,int lastindex) {
+        int first_goal = goal.charAt(lastindex-2) - '0';
+        int second_goal = goal.charAt(lastindex-1) - '0';
+        int third_goal = goal.charAt(lastindex) - '0';
+        int up_count;
+        int down_count;
+        if (UP[first_value][first_goal] == UP[second_value][second_goal] && UP[second_value][second_goal] == UP[third_value][third_goal]) { // 조기 종료
+            return one(third_value,lastindex);
+        }
+        if (UP[first_value][first_goal] == UP[second_value][second_goal]) {
+            return two(second_value, third_value, lastindex);
+        }
+        else if (UP[second_value][second_goal] == UP[third_value][third_goal]) {
+            return two(first_value, second_value, lastindex-1);
+        }
+        else if (UP[third_value][third_goal] == UP[first_value][first_goal]) {
+            // up
+            int value_1 = 0;
+            if (UP[third_value][third_goal] < Down[third_value][third_goal]) {
+                value_1 = UP[third_value][third_goal] + second_value;
+                value_1 = value_1>9?value_1-10:value_1;
+                return counting(UP[third_value][third_goal]) + one(value_1, lastindex-1);
+            }
+            // down
+            else {
+                value_1 = second_value - Down[third_value][third_goal];
+                value_1 = value_1<0?value_1+10:value_1;
+                return counting(Down[third_value][third_goal]) + one(value_1, lastindex-1);
+            }
         }
         else {
-            del = (table.charAt(not_correct_index) - '0') - main;
-            del = (del<0)?del+10:del;
+            int del = 0;
+            int two_1 = 0;
+            int two_2 = 0;
+            // up
+            int minimum_up = Math.min(Math.min(UP[first_value][first_goal],UP[second_value][second_goal]),UP[third_value][third_goal]);
+            if (minimum_up == UP[first_value][first_goal]){
+                del = UP[first_value][first_goal];
+                two_1 = del + second_value;
+                two_1 = two_1>9?two_1-10:two_1;
+                two_2 = del + third_value;
+                two_2 = two_2>9?two_2-10:two_2;
+                up_count = counting(del) + two(two_1,two_2,lastindex);
+            }
+            else if (minimum_up == UP[second_value][second_goal]){
+                del = UP[second_value][second_goal];
+                two_1 = del + first_value;
+                two_1 = two_1>9?two_1-10:two_1;
+                two_2 = del + third_value;
+                two_2 = two_2>9?two_2-10:two_2;
+                up_count = counting(del) + one(two_1, lastindex-2) + one(two_2, lastindex);
+            }
+            else {
+                del = UP[third_value][third_goal];
+                two_1 = del + first_value;
+                two_1 = two_1>9?two_1-10:two_1;
+                two_2 = del + second_value;
+                two_2 = two_2>9?two_2-10:two_2;
+                up_count = counting(del) + two(two_1,two_2,lastindex-1);
+            }
+            // down
+            int minimum_down = Math.min(Math.min(Down[first_value][first_goal],Down[second_value][second_goal]),Down[third_value][third_goal]);
+            if (minimum_down == Down[first_value][first_goal]){
+                del = Down[first_value][first_goal];
+                two_1 = second_value - del;
+                two_1 = two_1<0?two_1+10:two_1;
+                two_2 = third_value - del;
+                two_2 = two_2<0?two_2+10:two_2;
+                down_count = counting(del) + two(two_1,two_2,lastindex);
+            }
+            else if (minimum_down == Down[second_value][second_goal]){
+                del = Down[second_value][second_goal];
+                two_1 = first_value - del;
+                two_1 = two_1<0?two_1+10:two_1;
+                two_2 = third_value - del;
+                two_2 = two_2<0?two_2+10:two_2;
+                down_count = counting(del) + one(two_1, lastindex-2) + one(two_2, lastindex);
+            }
+            else {
+                del = Down[third_value][third_goal];
+                two_1 = first_value - del;
+                two_1 = two_1<0?two_1+10:two_1;
+                two_2 = second_value - del;
+                two_2 = two_2<0?two_2+10:two_2;
+                down_count = counting(del) + two(two_1,two_2,lastindex-1);
+            }
+            if (up_count <= down_count) {
+                return up_count;
+            }
+            else {
+                return down_count;
+            }
         }
-        if (UP[goal.charAt(not_correct_index) - '0'][del] == null){
-            memo(goal.charAt(not_correct_index) - '0',del);
-        }
-        return count + Math.min(first(UP[goal.charAt(not_correct_index) - '0'][del]), first(Down[goal.charAt(not_correct_index) - '0'][del]));
     }
-    public static void memo (int a, int b) {
-        UP[a][b] = up_size(a,b);
-        UP[b][a] = UP[a][b];
-        Down[a][b] = down_size(a,b);
-        Down[b][a] = Down[a][b];
-    }
-
-     */
 }
