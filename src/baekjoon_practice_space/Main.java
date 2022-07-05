@@ -56,19 +56,22 @@ public class Main {
     }
 
     public static void go (int a, int b, int c, int main_index, int count) {
-        if (main_index == N-1) {
+        if (main_index == N) {
             DP[N] = Math.min(DP[N],count);
             return;
         }
-        if (UP[a][table.charAt(main_index) - '0'] <= Down[a][table.charAt(main_index) - '0']) {
-            if (UP[a][table.charAt(main_index) - '0'] > 3) {
+        if (UP[a][goal.charAt(main_index) - '0'] <= Down[a][goal.charAt(main_index) - '0']) {
+            if (UP[a][goal.charAt(main_index) - '0'] > 3) {
                 go(up(a+3), up(b+3), up(c+3),main_index,count+1);
                 go(up(a+3), up(b+3), c,main_index,count+1);
                 go(up(a+3), b, c,main_index,count+1);
                 return;
             }
             else {
-                int k = UP[a][table.charAt(main_index) - '0'];
+                int k = UP[a][goal.charAt(main_index) - '0'];
+                if (k == 0) {
+                    count--;
+                }
                 if (main_index >= N-3) {
                     go(up(b+k), up(c+k), 0,main_index+1,count+1);
                     go(up(b+k), c, 0,main_index+1,count+1);
@@ -83,14 +86,17 @@ public class Main {
             }
         }
         else {
-            if (Down[a][table.charAt(main_index) - '0'] > 3) {
+            if (Down[a][goal.charAt(main_index) - '0'] > 3) {
                 go(down(a-3), down(b-3), down(c-3),main_index,count+1);
                 go(down(a-3), down(b-3), c,main_index,count+1);
                 go(down(a-3), b, c,main_index,count+1);
                 return;
             }
             else {
-                int k = Down[a][table.charAt(main_index) - '0'];
+                int k = Down[a][goal.charAt(main_index) - '0'];
+                if (k == 0) {
+                    count--;
+                }
                 if (main_index >= N-3) {
                     go(down(b-k), down(c-k), 0,main_index+1,count+1);
                     go(down(b-k), c, 0,main_index+1,count+1);
