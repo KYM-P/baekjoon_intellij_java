@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/baekjoon_num12865.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +27,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="28eCjAzaCuE57SflPH7dNwHGorb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -38,6 +38,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.baekjoon_practice_since2024.Main.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -51,13 +53,13 @@
     "settings.editor.selected.configurable": "Errors"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="BitMask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="algorithm_record.BitMask" />
+  <component name="RunManager" selected="Application.baekjoon_practice_since2024.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.Main" />
       <module name="baekjoon" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="algorithm_record.*" />
+          <option name="PATTERN" value="baekjoon_practice_space.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -65,12 +67,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.Main" />
+    <configuration name="baekjoon_practice_since2024.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="baekjoon_practice_since2024.Main" />
       <module name="baekjoon" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="baekjoon_practice_space.*" />
+          <option name="PATTERN" value="baekjoon_practice_since2024.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.baekjoon_practice_since2024.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.practice_space_1" />
         <item itemvalue="Application.practice_space_2" />
         <item itemvalue="Application.practice_space_3" />
-        <item itemvalue="Application.BitMask" />
       </list>
     </recent_temporary>
   </component>
