@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/beakjoon_num1655.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +39,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "Application.baekjoon_practice_since2024.Main.executor": "Debug",
+    "Application.baekjoon_practice_since2024.Main.executor": "Run",
     "Application.beakjoon_num1655.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -53,7 +54,7 @@
     "settings.editor.selected.configurable": "Errors"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.beakjoon_num1655">
+  <component name="RunManager" selected="Application.baekjoon_practice_since2024.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.Main" />
       <module name="baekjoon" />
@@ -121,8 +122,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.beakjoon_num1655" />
         <item itemvalue="Application.baekjoon_practice_since2024.Main" />
+        <item itemvalue="Application.beakjoon_num1655" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.practice_space_1" />
         <item itemvalue="Application.practice_space_2" />
