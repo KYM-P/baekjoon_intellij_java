@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class beakjoon_num3197 {
     static int R;
     static int C;
     static char[][] table;
