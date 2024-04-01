@@ -1,13 +1,11 @@
-package baekjoon_practice_space;
-
+package baekjoon_practice_since2024;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
-
+public class baekjoon_num11401 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine()," ");
@@ -32,7 +30,7 @@ public class Main {
         }
         // System.out.println(deno + " " + nume);
 
-        // (nume / deno) % div == (nume * deno**(div-2))%div (단 div는 소수, deno는 div의 배수가 아닐 때
+        // (nume / deno) % div == (nume * deno**(div-2))%div  : 단 div는 소수, deno는 div의 배수가 아닐 때
         long result = (nume * product_remainder(deno, div-2, div))%div;
 
         System.out.println(result);

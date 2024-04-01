@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/beakjoon_num135617.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/baekjoon_num11401.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_space/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_space/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,24 +39,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.baekjoon_practice_since2024.Main.executor": "Run",
-    "Application.beakjoon_num1655.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/KYM/Documents/practice_java_intellij",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "Errors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.baekjoon_practice_since2024.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.beakjoon_num1655.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/KYM/Documents/practice_java_intellij&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.baekjoon_practice_since2024.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="baekjoon_practice_space.Main" />
@@ -124,8 +126,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.baekjoon_practice_since2024.Main" />
-        <item itemvalue="Application.beakjoon_num1655" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.beakjoon_num1655" />
         <item itemvalue="Application.practice_space_1" />
         <item itemvalue="Application.practice_space_2" />
       </list>
@@ -139,6 +141,9 @@
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\KYM\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="" />

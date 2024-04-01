@@ -1,13 +1,11 @@
 package baekjoon_practice_since2024;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
-
+public class baekjoon_num10830 {
     static final int div = 1000;
     static int n;
     static long b;
@@ -16,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine()," ");
-
+        // input
         n = Integer.parseInt(st.nextToken());
         b = Long.parseLong(st.nextToken());
 
@@ -28,6 +26,7 @@ public class Main {
                 first[i][j] = Integer.parseInt(st.nextToken());
             }
         }
+        // result
         int[][] result = process(b);
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -38,7 +37,7 @@ public class Main {
 
     }
 
-    public static int[][] process (long c) {
+    public static int[][] process (long c) { // 제곱의 분할 정복
         if (c == 1) {
             return first;
         }
@@ -53,7 +52,7 @@ public class Main {
         }
     }
 
-    public static int[][] product (int[][] x, int[][] y) {
+    public static int[][] product (int[][] x, int[][] y) { // 두 행열의 곱
         int[][] answer = new int[n+1][n+1];
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -66,5 +65,4 @@ public class Main {
 
         return answer;
     }
-
 }
