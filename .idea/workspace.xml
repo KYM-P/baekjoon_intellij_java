@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/baekjoon_num11401.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/baekjoon_num2933.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_space/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_space/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_since2024/baekjoon_num10830.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/baekjoon_num10830.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_space/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -568,7 +569,7 @@
       <option name="project" value="LOCAL" />
       <updated>1656946407666</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -4,53 +4,195 @@ package baekjoon_practice_space;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Main {
 
+    static final int div = 1000;
+    static int r;
+    static int c;
+    static int[][] table;
+    static int[] dx = {1, 0, -1, 0};
+    static int[] dy = {0, 1, 0, -1};
+
+    static int min_x = 100;
+    static int max_x = 0;
+    static boolean[][] c_table = {}; // 방문 기록 table
+    static boolean[][] not_f_table = {}; // 떨어지지 않는 클러스터
+    static LinkedList<int[]> f_list = new LinkedList<>(); // 떨어지는 클러스터
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine()," ");
+        // input
+        r = Integer.parseInt(st.nextToken());
+        c = Integer.parseInt(st.nextToken());
 
-        int n = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
+        table = new int[r+1][c+1];
 
-        final int div = 1000000007;
-
-        long deno = 1; // 분모
-        long nume = 1; // 분자
-
-        // 페르마의 소정리, 나머지 연산의 분배법칙 응용
-        for (int i = n; i > k; i--) {
-            nume *= i; // n! / r!
-            nume %= div;
+        // table input
+        for (int i = 1; i <= r; i++) {
+            String str = br.readLine();
+            for (int j = 1; j <= c; j ++) {
+                table[i][j] = str.charAt(j-1);
+            }
         }
 
-        for (int i = 1; i <= n-k; i++) {
-            deno *= i; // (n-r)!
-            deno %= div;
+        int n = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine()," ");
+        for (int i = 0; i < n; i++) {
+            int a = Integer.parseInt(st.nextToken());
+            if (a % 2 == 0) {
+                Left(a);
+            }
+            else {
+                Right(a);
+            }
         }
-        // System.out.println(deno + " " + nume);
+    }
+    public static boolean check (int a , int b) {
+        c_table[a][b] = true;
+        if (a == 1) {
+            return true;
+        }
+        if (table[a-1][b] == 'x' && !c_table[a-1][b]) {
+            if (check(a-1, b)) {
+                not_f_table[a-1][b] = true;
+                return true;
+            }
+            else {
+                f_list.add(new int[2]);
+                f_list.getLast()[0] = a;
+                f_list.getLast()[1] = b;
+                min_x = Math.min(min_x,b);
+                max_x = Math.max(max_x,b);
+                return false;
+            }
+        }
+        else if (not_f_table[a-1][b]){
+            return true;
+        }
+        if (table[a+1][b] == 'x' && !c_table[a+1][b]) {
+            if (check(a+1, b)) {
+                not_f_table[a+1][b] = true;
+                return true;
+            }
+            else {
+                f_list.add(new int[2]);
+                f_list.getLast()[0] = a;
+                f_list.getLast()[1] = b;
+                min_x = Math.min(min_x,b);
+                max_x = Math.max(max_x,b);
+                return false;
+            }
+        }
+        else if (not_f_table[a+1][b]){
+            return true;
+        }
+        if (table[a][b-1] == 'x' && !c_table[a][b-1]) {
+            if (check(a, b-1)) {
+                not_f_table[a][b-1] = true;
+                return true;
+            }
+            else {
+                f_list.add(new int[2]);
+                f_list.getLast()[0] = a;
+                f_list.getLast()[1] = b;
+                min_x = Math.min(min_x,b);
+                max_x = Math.max(max_x,b);
+                return false;
+            }
+        }
+        else if (not_f_table[a][b-1]){
+            return true;
+        }
+        if (table[a][b+1] == 'x' && !c_table[a][b+1]) {
+            if (check(a, b+1)) {
+                not_f_table[a][b] = true;
+                return true;
+            }
+            else {
+                f_list.add(new int[2]);
+                f_list.getLast()[0] = a;
+                f_list.getLast()[1] = b;
+                min_x = Math.min(min_x,b);
+                max_x = Math.max(max_x,b);
+                return false;
+            }
+        }
+        else if (not_f_table[a][b+1]){
+            return true;
+        }
 
-        // (nume / deno) % div == (nume * deno**(div-2))%div (단 div는 소수, deno는 div의 배수가 아닐 때
-        long result = (nume * product_remainder(deno, div-2, div))%div;
+        f_list.add(new int[2]);
+        f_list.getLast()[0] = a;
+        f_list.getLast()[1] = b;
+        min_x = Math.min(min_x,b);
+        max_x = Math.max(max_x,b);
+        return false;
+    }
 
-        System.out.println(result);
+    public static void fall () {
 
     }
 
-    public static long product_remainder(long a, long b, long c) { // a 밑, b 지수, c 나누는 값
-        if (b == 1) {
-            return a % c;
+    public static void reset() {
+
+    }
+
+    public static void Left (int h) {
+        int i = 1;
+        while(table[h][i] == '.') {
+            if (i < c) {
+                i++;
+            }
+            else {
+                return;
+            }
+        }
+        if (i == c || table[h+1][i+1] == '.' || table[h-1][i+1] == '.') {
+            if (table[h-1][i] == 'x') {
+                check(h-1,i);
+            }
+            if (table[h+1][i] == 'x') {
+                check(h+1,i);
+            }
+            if (table[h][i-1] == 'x') {
+                check(h,i-1);
+            }
+            if (table[h][i+1] == 'x') {
+                check(h,i+1);
+            }
+        }
+        table[h][i] = '.';
+    }
+
+    public static void Right (int h) {
+        int i = c;
+        while(table[h][i] == '.') {
+            if (i > 1) {
+                i--;
+            }
+            else {
+                return;
+            }
         }
 
-        long div_power = product_remainder(a,b/2,c);
-
-        if (b%2 == 0) {
-            return (div_power * div_power) % c;
+        if (i == 1 || table[h+1][i-1] == '.' || table[h-1][i-1] == '.') {
+            if (table[h-1][i] == 'x') {
+                check(h-1,i);
+            }
+            if (table[h+1][i] == 'x') {
+                check(h+1,i);
+            }
+            if (table[h][i-1] == 'x') {
+                check(h,i-1);
+            }
+            if (table[h][i+1] == 'x') {
+                check(h,i+1);
+            }
         }
-        else {
-            return (((div_power * div_power)%c) * a) % c;
-        }
+        table[h][i] = '.';
     }
 }
