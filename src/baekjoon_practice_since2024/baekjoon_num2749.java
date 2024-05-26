@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class baejoon_num2749 {
+public class baekjoon_num2749 {
     static long n = 0; // baekjoon 에서는 double로 long 처럼 정수를 표현할 수 없다. 그러므로 long 사용
     static int div = 1000000; // 나누는 값
     public static void main (String[] args) throws IOException {

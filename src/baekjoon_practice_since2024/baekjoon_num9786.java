@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class Main {
-
+public class baekjoon_num9786 { // 우선순위 큐를 사용해 최단 경로를 탐색
     static int t = 0;
     static int h = 0,w = 0;
     static char[][] table;
@@ -73,11 +72,11 @@ public class Main {
     }
     public static void bfs(int s_y, int s_x) {
         visited = new boolean[h+2][w+2];
-        PriorityQueue<pris> pq = new PriorityQueue<>(); // 우선순위큐 혹은 다른 방법으로 최단 거리를 탐색하여 dp에 저장 시켜야 한다.
-        pq.add(new pris(s_y,s_x,0));
+        PriorityQueue<Main.pris> pq = new PriorityQueue<>(); // 우선순위큐 혹은 다른 방법으로 최단 거리를 탐색하여 dp에 저장 시켜야 한다.
+        pq.add(new Main.pris(s_y,s_x,0));
         visited[s_y][s_x] = true;
         while(!pq.isEmpty()) {
-            pris p = pq.poll();
+            Main.pris p = pq.poll();
             dp[p.y][p.x] += p.count;
             for (int i = 0; i < 4; i++) {
                 int ny = p.y + dy[i];
@@ -87,12 +86,12 @@ public class Main {
                 if (visited[ny][nx])continue; // 방문한 지역
                 if (table[ny][nx] == '*')continue; // 벽
                 if (table[ny][nx] == '#')nc++; // 문
-                pq.add(new pris(ny,nx,nc));
+                pq.add(new Main.pris(ny,nx,nc));
                 visited[ny][nx] = true;
             }
         }
     }
-    public static class pris implements Comparable<pris>{
+    public static class pris implements Comparable<Main.pris>{
         int x, y, count;
         public pris (int y, int x, int count) {
             this.y = y;
@@ -100,7 +99,7 @@ public class Main {
             this.count = count;
         }
         @Override
-        public int compareTo(pris p) {
+        public int compareTo(Main.pris p) {
             return this.count - p.count;
         }
     }
