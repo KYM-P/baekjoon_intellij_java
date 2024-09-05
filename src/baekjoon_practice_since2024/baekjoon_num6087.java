@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class baekjoon_num6087 {
     static int table_wei;
     static int table_hei;
     static char[][] table;
@@ -41,20 +41,10 @@ public class Main {
             }
         }
         // start
-        dp = new int[table_wei][table_hei][5];
-        visit = new boolean[table_wei][table_hei][5];
+        dp = new int[table_wei][table_hei][5]; // dp[x][y][4] 는 모든 방향에서의 최소
+        visit = new boolean[table_wei][table_hei][5]; // visit[x][y][방향] / 0 상, 1 하, 2 좌, 3 우, 4 1번이라도 방문한 곳
         point(start_p[0], start_p[1], -1, 4); // 첫 레이저 출발시에도 count 를 계산하므로 보정치 -1이 필요
         System.out.println(dp[finish_p[0]][finish_p[1]][4]);
-        // 검수
-        /*
-        for(int i = 0; i < table_hei; i++) {
-            for(int j = 0; j < table_wei; j++) {
-                if (dp[j][i] == -1)dp[j][i] = 0;
-                System.out.print(dp[j][i]);
-            }
-            System.out.println();
-        }
-         */
     }
     // point / 좌표 이동
     // pre_way / 0 상, 1 하, 2 좌, 3 우, 4 시작
