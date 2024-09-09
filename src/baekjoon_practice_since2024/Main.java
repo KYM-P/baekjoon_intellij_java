@@ -1,90 +1,89 @@
 package baekjoon_practice_since2024;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int table_wei;
-    static int table_hei;
-    static char[][] table;
-    static int[][][] dp;
-    static boolean[][][] visit;
-    static int[] dx = new int[]{0, 0, -1, 1};
-    static int[] dy = new int[]{1, -1, 0, 0};
-    static int[] start_p = new int[]{-1,-1};
-    static int[] finish_p = new int[]{-1,-1};
+
+    static int test_case = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
-        // wei, hei input
+        // test_case input
         st = new StringTokenizer(br.readLine(), " ");
-        table_wei = Integer.parseInt(st.nextToken());
-        table_hei = Integer.parseInt(st.nextToken());
-        //table input
-        table = new char[table_wei][table_hei];
-        for (int i = 0; i < table_hei; i++) {
-            String s = br.readLine();
-            for (int j = 0; j < table_wei; j++) {
-                table[j][i] = s.charAt(j);
-                if (table[j][i] == 'C'){ // C ì§€ì 
-                    if(start_p[0] == -1){ // ì‹œì‘ì§€ì ì´ ì—†ìœ¼ë©´
-                        start_p[0] = j; // ì‹œì‘ì§€ì  ì„¤ì •
-                        start_p[1] = i;
-                    }else{
-                        finish_p[0] = j; // ë„ì°©ì§€ì  ì„¤ì •
-                        finish_p[1] = i;
-                    }
+        test_case = Integer.parseInt(st.nextToken());
+
+        // test_case start
+        while(test_case != 0) {
+            st = new StringTokenizer(br.readLine(), " ");
+            int chapter_amount = Integer.parseInt(st.nextToken());
+            // input
+            st = new StringTokenizer(br.readLine(), " ");
+            LinkedList<Integer> chapter_list = new LinkedList<>();
+            for(int i = 0; i < chapter_amount; i++) {
+                chapter_list.add(Integer.parseInt(st.nextToken()));
+            }
+            // start
+            PriorityQueue<SumValue> pq_up = new PriorityQueue<>();
+            for (int i = 0; i < chapter_amount-1; i++) {
+                pq_up.add(new SumValue( chapter_list.get(i), chapter_list.get(i+1), i,i+1));
+            }
+            int answer = 0;
+            while(chapter_list.size() != 1) {
+                SumValue s = pq_up.poll();
+                if(s.BeforeIndex >= chapter_list.size()-1 || s.NextIndex >= chapter_list.size())continue;
+                if(s.BeforeValue != chapter_list.get(s.BeforeIndex) || s.NextValue != chapter_list.get(s.NextIndex))continue;
+                answer += s.getValue();
+                chapter_list.add(s.BeforeIndex, s.getValue()); // BeforeIndex ÀÚ¸®¿¡ »õ·Î ÇÕÄ£ chapter µî·Ï
+                chapter_list.remove(s.NextIndex);   // ÇÕÄ¡±â Àü µÎ chapter »èÁ¦
+                chapter_list.remove(s.NextIndex);
+                if(s.BeforeIndex != 0) { // »õ·Î ÇÕÄ£ chapter ¸¦ NextIndex ·Î µî·Ï
+                    pq_up.add(new SumValue(chapter_list.get(s.BeforeIndex - 1), s.getValue(), s.BeforeIndex - 1, s.BeforeIndex));
                 }
+                if(s.BeforeIndex != chapter_list.size() - 1) { // »õ·Î ÇÕÄ£ chapter ¸¦ BeforeIndex ·Î µî·Ï
+                    pq_up.add(new SumValue(s.getValue(), chapter_list.get(s.BeforeIndex + 1), s.BeforeIndex, s.BeforeIndex + 1));
+                }
+                bw.write(chapter_list.toString() + "\n");
             }
+            bw.write(answer + "\n");
+            test_case--;
         }
-        // start
-        dp = new int[table_wei][table_hei][5];
-        visit = new boolean[table_wei][table_hei][5];
-        point(start_p[0], start_p[1], -1, 4); // ì²« ë ˆì´ì € ì¶œë°œì‹œì—ë„ count ë¥¼ ê³„ì‚°í•˜ë¯€ë¡œ ë³´ì •ì¹˜ -1ì´ í•„ìš”
-        System.out.println(dp[finish_p[0]][finish_p[1]][4]);
-        // ê²€ìˆ˜
-        /*
-        for(int i = 0; i < table_hei; i++) {
-            for(int j = 0; j < table_wei; j++) {
-                if (dp[j][i] == -1)dp[j][i] = 0;
-                System.out.print(dp[j][i]);
-            }
-            System.out.println();
-        }
-         */
+        bw.flush();
     }
-    // point / ì¢Œí‘œ ì´ë™
-    // pre_way / 0 ìƒ, 1 í•˜, 2 ì¢Œ, 3 ìš°, 4 ì‹œì‘
-    public static boolean point(int x, int y, int count, int pre_way){
-        if (visit[x][y][4] && dp[x][y][4] < count){
-            return false;
+
+    static class SumValue implements Comparable<SumValue> {
+        int BeforeValue;
+        int NextValue;
+        int BeforeIndex;
+        int NextIndex;
+
+        SumValue (int bv, int nv, int bi, int ni) {
+            BeforeValue = bv;
+            NextValue = nv;
+            BeforeIndex = bi;
+            NextIndex = ni;
         }
-        else if (visit[x][y][pre_way] && dp[x][y][pre_way] == count){
-            return false;
+        public int getValue () {
+            return BeforeValue + NextValue;
         }
-        else{
-            if (visit[x][y][4]){
-                dp[x][y][4] = Math.min(dp[x][y][4], count);
-            }else{
-                dp[x][y][4] = count;
-            }
-            if(visit[x][y][pre_way]){
-                dp[x][y][pre_way] = Math.min(dp[x][y][pre_way], count);
-            }else {
-                dp[x][y][pre_way] = count;
-            }
-            visit[x][y][4] = true;
-            visit[x][y][pre_way] = true;
-            if(finish_p[0] == x && finish_p[1] == y)return true; // ë„ì°©
-            for (int i = 0; i < 4; i++) {
-                if(x + dx[i] >= table_wei || x + dx[i] < 0 || y + dy[i] < 0 || y + dy[i] >= table_hei)continue; // ë§‰ë‹¤ë¥¸ ê¸¸
-                if(table[x + dx[i]][y + dy[i]] == '*')continue; // ë²½
-                point(x + dx[i], y + dy[i], (pre_way == i)? count : count+1 , i); // ë‹¤ìŒ point
-            }
+        public int getBeforeValue () {
+            return BeforeValue;
         }
-        return true;
+        public int NextValue () {
+            return NextValue;
+        }
+        public int BeforeIndex () {
+            return BeforeIndex;
+        }
+        public int NextIndex () {
+            return NextIndex;
+        }
+        public int compareTo(SumValue sv) { // ºÎ¸ğ ¾È compareTo ÇÔ¼ö Override
+            return this.getValue() - sv.getValue(); // ¾ç¼ö°¡ ³ª¿À¸é ¿ì¼±¼øÀ§ ¹Ğ¸² -> ¿À¸§Â÷¼ø
+        }
     }
 }
