@@ -3,10 +3,10 @@ package baekjoon_practice_since2024;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Main {
-
+public class baekjoon_num11066 {
     static int test_case = 0;
-    static int[][][] dp;
+    static int[][][] dp; // dp[start_index][end_index][0] : start_index 부터 end_index 까지의 데이터의 합
+    // dp[start_index][end_index][1] : start_index 부터 end_index 까지 합치면서 사용한 총 비용
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -29,7 +29,7 @@ public class Main {
                 for (int j = 0; j < chapter_amount - i; j++) {
                     dp[j][j+i][0] = dp[j][j][0] + dp[j+1][j+i][0];
                     int value = Integer.MAX_VALUE;
-                    for (int k = j; k < j+i; k++) { // dp[j][j+1] �� ����� ��� ���
+                    for (int k = j; k < j+i; k++) { // dp[j][j+1] 를 만드는 모든 경우
                         value = Math.min(dp[j][k][1] + dp[k+1][j+i][1], value);
                     }
                     dp[j][j+i][1] += dp[j][j+i][0] + value;
@@ -41,4 +41,5 @@ public class Main {
         }
         bw.flush();
     }
+
 }

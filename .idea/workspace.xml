@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcc34a62-5d80-48a4-ad31-4a84c14d7d7b" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/baekjoon_num11066.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main$SumValue.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/baekjoon/baekjoon_practice_since2024/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/baekjoon_practice_since2024/Main.java" afterDir="false" />
     </list>
@@ -48,7 +50,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/KYM/Documents/practice_java_intellij",
+    "last_opened_file_path": "C:/Users/KYM/Documents/baekjoon_intellij_java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
