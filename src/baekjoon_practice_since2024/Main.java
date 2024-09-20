@@ -1,44 +1,37 @@
 package baekjoon_practice_since2024;
 
+
 import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    static int test_case = 0;
-    static int[][][] dp;
+    static int matrix_n;
+    static int[][] dp;
+    static int[] row;
+    static int[] column;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
-        // test_case input
+        // input
         st = new StringTokenizer(br.readLine(), " ");
-        test_case = Integer.parseInt(st.nextToken());
-        // test_case start
-        while(test_case != 0) {
+        matrix_n = Integer.parseInt(st.nextToken());
+        dp = new int[matrix_n][matrix_n];
+        for(int mn = 0; mn < matrix_n; mn++){
             st = new StringTokenizer(br.readLine(), " ");
-            int chapter_amount = Integer.parseInt(st.nextToken());
-            // input
-            dp = new int[chapter_amount][chapter_amount][2];
-            st = new StringTokenizer(br.readLine(), " ");
-            for(int i = 0; i < chapter_amount; i++) {
-                dp[i][i][0] = Integer.parseInt(st.nextToken());
-            }
-            // start
-            for (int i = 1; i < chapter_amount; i++) {
-                for (int j = 0; j < chapter_amount - i; j++) {
-                    dp[j][j+i][0] = dp[j][j][0] + dp[j+1][j+i][0];
-                    int value = Integer.MAX_VALUE;
-                    for (int k = j; k < j+i; k++) { // dp[j][j+1] 를 만드는 모든 경우
-                        value = Math.min(dp[j][k][1] + dp[k+1][j+i][1], value);
-                    }
-                    dp[j][j+i][1] += dp[j][j+i][0] + value;
-                    //System.out.println("[" + j + ":" + (j+i) + "], dp0 : " + dp[j][j+i][0] + ", dp1 : " + dp[j][j+i][1]);
+            row[mn] = Integer.parseInt(st.nextToken());
+            column[mn] =Integer.parseInt(st.nextToken());
+        }
+        // start
+        for(int i = 0; i < matrix_n-1; i++) {
+            dp[i][i+1] = row[i] * column[i] * column[i+1];
+        }
+        for(int i = 2; i < matrix_n-1; i ++) {
+            for(int j = 0; j < matrix_n-i; j++) {
+                for(int k = 1; k < i; k++) {
+                    dp[j][j+i] = dp[j][j+k] + dp[j+k][j+i];
                 }
             }
-            bw.write(dp[0][chapter_amount-1][1] + "\n");
-            test_case--;
         }
-        bw.flush();
     }
 }
